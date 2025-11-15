@@ -781,9 +781,11 @@
 
     <script>
         // ---
-
+        // --- بخش بسیار مهم: کلید API ---
         // ---
-        const GEMINI_API_KEY = "AIzaSyDUWLEviPg9Jt4bzy7YelDfur0hVkzxg7k"; // <--
+        // --- کلید API شما در خط زیر قرار داده شده است.
+        // ---
+        const GEMINI_API_KEY = "AIzaSyDUWLEviPg9Jt4bzy7YelDfur0hVkzxg7k"; // <-- کلید شما با موفقیت قرار گرفت
         // ---
         // ---
         // ---
@@ -877,24 +879,44 @@
             const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
             const mobileMenu = document.getElementById('mobile-menu');
 
+            // ---
+            // --- FIX FOR NAVIGATION MENU ---
+            // ---
             // Function to handle active link highlighting
             function updateActiveLink() {
                 let currentSectionId = 'home'; // Default to home
-                
+                const sections = document.querySelectorAll('.content-section');
+                const offset = 150; // Offset from the top of the viewport in pixels
+
                 // Find the section that is currently most visible
-                document.querySelectorAll('.content-section').forEach(section => {
+                sections.forEach(section => {
                     const rect = section.getBoundingClientRect();
-                    // Check if the top of the section is within the top 1/3 of the viewport
-                    if (rect.top >= 0 && rect.top <= window.innerHeight / 3) {
+                    // This finds the section that is currently at the top of the view
+                    if (rect.top <= offset && rect.bottom >= offset) {
                         currentSectionId = section.id;
                     }
                 });
+
+                // Fallback: if scrolled to the very top, set to home
+                if (window.scrollY < 100) {
+                    currentSectionId = 'home';
+                }
+                
+                // Fallback: if scrolled to the very bottom, set to the last section
+                // Check if we are near the bottom of the page
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 20) { // 20px buffer
+                     if (sections.length > 0) {
+                        // Find the last section in the document flow
+                        currentSectionId = sections[sections.length - 1].id;
+                     }
+                }
 
                 // Update active class for all nav links
                 document.querySelectorAll('.nav-link, .nav-link-mobile').forEach(navLink => {
                     const navHref = navLink.getAttribute('href');
                     if (!navHref) return; // Skip if href is missing
                     
+                    // Check if the link's href matches the current section's ID
                     const isTarget = navHref === `#${currentSectionId}`;
                     navLink.classList.toggle('active', isTarget);
                     
@@ -908,6 +930,9 @@
                     }
                 });
             }
+            // ---
+            // --- END OF FIX FOR NAVIGATION MENU ---
+            // ---
 
             // Add scroll listener to update active links
             window.addEventListener('scroll', updateActiveLink);
@@ -1191,9 +1216,15 @@
                     } else {
                         // Handle cases where the API returns a safety block or empty content
                         let errorMessage = 'Invalid response from API.';
-                        if (result.candidates && result.candidates[0].finishReason === 'SAFETY') {
+                        // ---
+                        // --- FIX FOR CHATBOT (result.S[0] typo) ---
+                        // ---
+                        if (result.candidates && result.candidates[0] && result.candidates[0].finishReason === 'SAFETY') {
                             errorMessage = 'Content generation blocked due to safety settings.';
                         }
+                        // ---
+                        // --- END OF FIX FOR CHATBOT ---
+                        // ---
                         throw new Error(errorMessage);
                     }
 
@@ -1213,4 +1244,3 @@
 
 </body>
 </html>
-
