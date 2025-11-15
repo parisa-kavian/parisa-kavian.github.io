@@ -1191,7 +1191,7 @@
                     } else {
                         // Handle cases where the API returns a safety block or empty content
                         let errorMessage = 'Invalid response from API.';
-                        if (result.candidates && result.S[0].finishReason === 'SAFETY') {
+                        if (result.candidates && result.candidates[0].finishReason === 'SAFETY') {
                             errorMessage = 'Content generation blocked due to safety settings.';
                         }
                         throw new Error(errorMessage);
@@ -1213,3 +1213,4 @@
 
 </body>
 </html>
+
