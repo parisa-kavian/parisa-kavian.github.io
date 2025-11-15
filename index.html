@@ -1006,6 +1006,9 @@
                 throw new Error('Max retries reached');
             }
 
+            // ---
+            // --- FIX FOR "Key Contributions" 400 ERROR ---
+            // ---
             // Function to call Gemini API for contributions
             async function callGeminiContributions(abstractText, targetElementId, button) {
                 const targetElement = document.getElementById(targetElementId);
@@ -1024,14 +1027,15 @@
 
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`;
 
+                // Refactored prompt: Combine system and user instructions into one
                 const systemPrompt = "You are an expert academic reviewer. Your job is to read an abstract and concisely list the top 3-4 'Key Contributions' or 'Main Findings' as bullet points. Be specific and scientific, but avoid overly technical jargon. Start directly with the bullet points.";
                 const userQuery = `List the Key Contributions of this abstract:\n\n"${abstractText}"`;
+                const combinedQuery = `${systemPrompt}\n\nUSER QUERY:\n${userQuery}`;
 
                 const payload = {
-                    contents: [{ parts: [{ text: userQuery }] }],
-                    systemInstruction: {
-                        parts: [{ text: systemPrompt }]
-                    },
+                    // Send the combined prompt as a single user message
+                    contents: [{ parts: [{ text: combinedQuery }] }],
+                    // DO NOT send systemInstruction here
                     generationConfig: {
                         temperature: 0.4,
                         topP: 0.95,
@@ -1084,6 +1088,9 @@
                     button.disabled = false;
                 }
             }
+            // ---
+            // --- END OF FIX FOR "Key Contributions" ---
+            // ---
 
             // Add event listeners to all Gemini contributions buttons
             document.querySelectorAll('.gemini-explain-btn').forEach(button => {
@@ -1159,6 +1166,9 @@
                 chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
             }
 
+            // ---
+            // --- FIX FOR CHATBOT 400 ERROR ---
+            // ---
             async function callGeminiChat(userQuery) {
                 if (GEMINI_API_KEY === "YOUR_API_KEY_HERE") {
                     addMessageToChat("The AI assistant is not configured. (Missing API Key)", 'bot');
@@ -1184,9 +1194,6 @@
 
                 const payload = {
                     contents: chatHistory, // Send the whole history
-                    systemInstruction: {
-                        parts: [{ text: systemPrompt }]
-                    },
                     generationConfig: {
                         temperature: 0.5,
                         topP: 0.95,
@@ -1194,6 +1201,13 @@
                     }
                 };
 
+                // Conditionally add systemInstruction ONLY on the first user message
+                if (chatHistory.length === 1) {
+                    payload.systemInstruction = {
+                        parts: [{ text: systemPrompt }]
+                    };
+                }
+                
                 try {
                     const result = await fetchWithBackoff(apiUrl, {
                         method: 'POST',
@@ -1216,15 +1230,9 @@
                     } else {
                         // Handle cases where the API returns a safety block or empty content
                         let errorMessage = 'Invalid response from API.';
-                        // ---
-                        // --- FIX FOR CHATBOT (result.S[0] typo) ---
-                        // ---
                         if (result.candidates && result.candidates[0] && result.candidates[0].finishReason === 'SAFETY') {
                             errorMessage = 'Content generation blocked due to safety settings.';
                         }
-                        // ---
-                        // --- END OF FIX FOR CHATBOT ---
-                        // ---
                         throw new Error(errorMessage);
                     }
 
@@ -1233,11 +1241,18 @@
                     const loadingBubble = document.getElementById('loading-bubble');
                     if (loadingBubble) loadingBubble.remove();
                     addMessageToChat(`Sorry, I'm having trouble connecting right now. (Error: ${error.message})`, 'bot');
+                    
+                    // Remove the failed user query from history so it can be retried
+                    chatHistory.pop(); 
+
                 } finally {
                     if(chatSendBtn) chatSendBtn.disabled = false;
                     if(chatInput) chatInput.focus();
                 }
             }
+            // ---
+            // --- END OF FIX FOR CHATBOT 400 ERROR ---
+            // ---
 
         });
     </script>
