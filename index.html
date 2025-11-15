@@ -18,8 +18,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     
-    <!-- Favicon (You can replace this with a real one) -->
-    <!-- <link rel="icon" href="images/favicon.png" type="image/png"> -->
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    
+    <!-- === SEO / OG Tags / Analytics === -->
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="author" content="Parisa Kavianpour">
+    <meta name="keywords" content="Parisa Kavianpour, AI Researcher, PhD, Generative AI, NLP, Deep Learning, Machine Learning, Earthquake Prediction, Fault Diagnosis">
+
+    <!-- Open Graph (OG) Tags for Social Media Sharing (LinkedIn, Twitter, etc.) -->
+    <meta property="og:title" content="Parisa Kavianpour | AI Researcher">
+    <meta property="og:description" content="AI Researcher specializing in Generative AI, NLP, and Deep Learning.">
+    <meta property="og:type" content="website">
+    <!-- IMPORTANT: Replace this with the final GitHub URL after deployment -->
+    <meta property="og:url" content="https://parisa-kavian.github.io/"> 
+    <!-- IMPORTANT: Replace this with a link to a real profile image (e.g., images/profile.jpg) -->
+    <meta property="og:image" content="https://placehold.co/600x600/E0E7FF/4F46E5?text=PK">
+
+    <!-- Google Analytics - Replace G-XXXXXXXXXX with your ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <!-- === END: SEO TAGS === -->
 	
     <style>
         /* Custom styles */
@@ -238,7 +264,6 @@
 
     <!-- Header & Navigation -->
     <header class="bg-white/90 backdrop-blur-sm sticky top-0 z-50 shadow-md">
-        <!-- ... existing header code ... -->
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             
             <div class="text-2xl font-bold text-indigo-600">Parisa Kavianpour</div>
@@ -277,10 +302,9 @@
         
         <!-- Left Sidebar -->
         <aside class="w-full lg:w-1/3 xl:w-1/4">
-            <!-- ... existing aside code ... -->
             <div class="bg-white p-6 rounded-lg shadow-lg lg:sticky lg:top-24">
-                <!-- Add a placeholder image or path to a real image -->
-                <img src="https://placehold.co/600x600/E0E7FF/4F46E5?text=PK" alt="Parisa Kavianpour" class="w-40 h-40 rounded-full mx-auto border-4 border-indigo-500">
+                <!-- IMPORTANT: Replace this placeholder with a real image path -->
+                <img src="https://placehold.co/600x600/E0E7FF/4F46E5?text=PK" alt="Parisa Kavianpour" class="w-40 h-40 rounded-full mx-auto border-4 border-indigo-500" onerror="this.src='https://placehold.co/600x600/E0E7FF/4F46E5?text=PK'; this.onerror=null;">
                 <h1 class="text-3xl font-bold text-gray-900 text-center mt-4">Parisa Kavianpour</h1>
                 <p class="text-center text-indigo-600 mt-1">AI/ML Researcher</p>
                 
@@ -313,7 +337,6 @@
         <div class="w-full lg:w-2/3 xl:w-3/4 space-y-16">
             <!-- Home Section (About Me) -->
             <section id="home" class="content-section">
-                <!-- ... existing home section code ... -->
                 <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">About Me</h2>
                 
                 <div class="text-lg space-y-4 text-gray-700 leading-relaxed mt-8">
@@ -380,6 +403,7 @@
                             </button>
                         </div>
                         <div class="abstract-content hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
+                            <!-- IMPORTANT: You must place 'Knowledgebasedsystems2025.png' inside an 'images' folder -->
                             <img src="images/Knowledgebasedsystems2025.png" 
                                  alt="Proposed Method for Knowledge Distillation" 
                                  class="rounded-lg w-full max-w-xl mx-auto my-3 border border-gray-300"
@@ -407,6 +431,7 @@
                             </button>
                         </div>
                         <div class="abstract-content hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
+                            <!-- IMPORTANT: You must place 'Measurement2025.png' inside an 'images' folder -->
                             <img src="images/Measurement2025.png" 
                                  alt="Proposed Method for Physics-Informed Deep Learning" 
                                  class="rounded-lg w-full max-w-xl mx-auto my-3 border border-gray-300"
@@ -425,7 +450,7 @@
                         <p class="text-sm text-gray-600 mt-1"><span class="font-semibold text-gray-800">Kavianpour, P.</span>, Kavianpour, M., & Ramezani, A. (2022).</p>
                         <p class="text-sm text-indigo-600 mt-1"><em>8th International Conference on Signal Processing and Intelligent Systems (ICSPIS), IEEE.</em></p>
                         <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 items-center">
-                            <a href="https://ieeexplore.ieee.org/abstract/document/10065094" class="text-indigo-500 hover:text-indigo-700 font-semibold text-sm" target="_blank"><i class="fas fa-link mr-2"></i>Article Link</a>
+                            <a href="https://doi.org/10.1109/ICSPIS57292.2022.10065094" class="text-indigo-500 hover:text-indigo-700 font-semibold text-sm" target="_blank"><i class="fas fa-link mr-2"></i>Article Link</a>
                             <button class="toggle-abstract-btn text-indigo-500 hover:text-indigo-700 font-semibold flex items-center text-sm">Read Abstract <i class="fas fa-chevron-down ml-2 transform transition-transform duration-300"></i></button>
                             <button class="gemini-explain-btn text-teal-600 hover:text-teal-800 font-semibold flex items-center text-sm" 
                                     data-target="gemini-pub-4"
@@ -434,20 +459,20 @@
                             </button>
                         </div>
                         <div class="abstract-content hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
-                            <p>[Placeholder Abstract] This conference paper presents a deep learning model for classifying earthquake magnitudes. We utilize multi-scale dilated convolutions to capture features at different temporal resolutions from seismic waveforms. An attention mechanism is incorporated to weigh the importance of different time steps, leading to improved classification accuracy.</p>
+                            <p>This conference paper presents a deep learning model for classifying earthquake magnitudes. We utilize multi-scale dilated convolutions to capture features at different temporal resolutions from seismic waveforms. An attention mechanism is incorporated to weigh the importance of different time steps, leading to improved classification accuracy.</p>
                         </div>
                         <!-- New Gemini Output Div -->
                         <div id="gemini-pub-4" class="gemini-output hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
                             <!-- Gemini response will be injected here -->
                         </div>
                     </div>
-                    <!-- Publication 5 & 6... -->
+                    <!-- Publication 5 -->
                     <div class="bg-white p-5 rounded-lg shadow">
                         <p class="font-bold text-lg text-gray-900">Earthquake Magnitude Prediction using Spatio-temporal Features Learning Based on a Hybrid CNN-BILSTM Model</p>
                         <p class="text-sm text-gray-600 mt-1"><span class="font-semibold text-gray-800">Kavianpour, P.</span>, Kavianpour, M., Jahani, E., & Ramezani, A. (2021).</p>
                         <p class="text-sm text-indigo-600 mt-1"><em>7th International Conference on Signal Processing and Intelligent Systems (ICSPIS), IEEE.</em></p>
                         <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 items-center">
-                            <a href="https://ieeexplore.ieee.org/abstract/document/9703447" class="text-indigo-500 hover:text-indigo-700 font-semibold text-sm" target="_blank"><i class="fas fa-link mr-2"></i>Article Link</a>
+                            <a href="https://doi.org/10.1109/ICSPIS54004.2021.9703447" class="text-indigo-500 hover:text-indigo-700 font-semibold text-sm" target="_blank"><i class="fas fa-link mr-2"></i>Article Link</a>
                              <button class="gemini-explain-btn text-teal-600 hover:text-teal-800 font-semibold flex items-center text-sm" 
                                     data-target="gemini-pub-5"
                                     data-abstract="This paper, an earlier version of our journal publication, proposes a hybrid CNN-BiLSTM model to learn spatio-temporal features for earthquake magnitude prediction. The model effectively combines spatial feature extraction from seismic sensor data with temporal sequence learning to forecast the magnitude of future seismic events.">
@@ -459,12 +484,13 @@
                             <!-- Gemini response will be injected here -->
                         </div>
                     </div>
+                    <!-- Publication 6 -->
                     <div class="bg-white p-5 rounded-lg shadow">
                         <p class="font-bold text-lg text-gray-900">An Intelligent Gearbox Fault Diagnosis under Different Operating Conditions using Adversarial Domain Adaptation</p>
                         <p class="text-sm text-gray-600 mt-1">Kavianpour, M., Ghorvei, M., <span class="font-semibold text-gray-800">Kavianpour, P.</span>, Ramezani, A., & Beheshti, M. T. H. (2022).</p>
                         <p class="text-sm text-indigo-600 mt-1"><em>8th International Conference on Control, Instrumentation and Automation (ICCIA), IEEE.</em></p>
                         <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 items-center">
-                            <a href="https://ieeexplore.ieee.org/abstract/document/9998492" class="text-indigo-500 hover:text-indigo-700 font-semibold text-sm" target="_blank"><i class="fas fa-link mr-2"></i>Article Link</a>
+                            <a href="https://doi.org/10.1109/ICCIA57463.2022.9998492" class="text-indigo-500 hover:text-indigo-700 font-semibold text-sm" target="_blank"><i class="fas fa-link mr-2"></i>Article Link</a>
                              <button class="gemini-explain-btn text-teal-600 hover:text-teal-800 font-semibold flex items-center text-sm" 
                                     data-target="gemini-pub-6"
                                     data-abstract="This paper tackles the problem of diagnosing gearbox faults when the machine operates under different conditions (e.g., varying speeds or loads). We use an adversarial domain adaptation technique, where the model is trained to learn features that are indistinguishable between different operating conditions, thus improving its generalization and robustness in real-world scenarios.">
@@ -481,7 +507,6 @@
 
             <!-- Experience Section -->
             <section id="experience" class="content-section">
-                <!-- ... existing experience section code ... -->
                 <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Experience</h2>
                 <div class="mt-8 space-y-8">
                     
@@ -611,7 +636,6 @@
 
             <!-- Education Section -->
             <section id="education" class="content-section">
-                <!-- ... existing education section code ... -->
                 <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Education</h2>
                 <div class="mt-8 space-y-6">
                      <div class="bg-white p-5 rounded-lg shadow">
@@ -636,7 +660,6 @@
 
             <!-- Skills Section -->
             <section id="skills" class="content-section">
-                <!-- ... existing skills section code ... -->
                 <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Skills</h2>
                 
                 <h3 class="text-2xl font-bold text-gray-900 mt-10 mb-6">Key Technologies & Frameworks</h3>
@@ -757,6 +780,15 @@
 
 
     <script>
+        // ---
+
+        // ---
+        const GEMINI_API_KEY = "AIzaSyDUWLEviPg9Jt4bzy7YelDfur0hVkzxg7k"; // <--
+        // ---
+        // ---
+        // ---
+
+
         document.addEventListener('DOMContentLoaded', function() {
             // --- Global state for chatbot ---
             let chatHistory = [];
@@ -766,6 +798,27 @@
             function gatherWebsiteContext() {
                 let context = "";
                 
+                // ---
+                // --- FIX 1 (Revised): Add Contact Info from Sidebar ---
+                // ---
+                const sidebar = document.querySelector('aside');
+                if (sidebar) {
+                    context += "Parisa's Contact Information:\n";
+                    const email = sidebar.querySelector('a[href^="mailto:"]');
+                    if (email) context += "Email: " + email.href.replace('mailto:','') + "\n";
+                    
+                    const linkedin = sidebar.querySelector('a[href*="linkedin.com"]');
+                    if (linkedin) context += "LinkedIn: " + linkedin.href + "\n";
+
+                    const github = sidebar.querySelector('a[href*="github.com"]');
+                    if (github) context += "GitHub: " + github.href + "\n";
+
+                    const scholar = sidebar.querySelector('a[href*="scholar.google.com"]');
+                    if (scholar) context += "Google Scholar: " + scholar.href + "\n";
+                    
+                    context += "\n\n";
+                }
+
                 // 1. About Me
                 const home = document.getElementById('home');
                 if (home) context += "About Parisa Kavianpour:\n" + home.textContent.trim() + "\n\n";
@@ -776,7 +829,7 @@
                     const title = pub.querySelector('.font-bold.text-lg');
                     const abstract = pub.querySelector('[data-abstract]');
                     if (title) context += "Title: " + title.textContent.trim() + "\n";
-                    if (abstract) context += "Abstract: "_ + abstract.dataset.abstract.trim() + "\n\n";
+                    if (abstract) context += "Abstract: " + abstract.dataset.abstract.trim() + "\n\n";
                 });
 
                 // 3. Experience
@@ -788,8 +841,15 @@
                     if (title) context += "Role: " + title.textContent.trim() + "\n";
                     if (company) context += "At: " + company.textContent.trim() + "\n";
                     if (details) context += "Details: " + details.textContent.trim() + "\n\n";
-                });
 
+                    // ---
+                    // --- FIX 2: Explicitly add "missing data" experience ---
+                    // ---
+                    if (title && title.textContent.includes('Tarbiat Modares University')) {
+                        context += "Specific expertise from this role includes: handling missing or incomplete data, physics-informed machine learning, and domain adaptation.\n\n";
+                    }
+                 });
+ 
                 // 4. Projects
                 context += "Projects:\n";
                  document.querySelectorAll('#projects .bg-white.shadow-lg').forEach(proj => {
@@ -832,7 +892,10 @@
 
                 // Update active class for all nav links
                 document.querySelectorAll('.nav-link, .nav-link-mobile').forEach(navLink => {
-                    const isTarget = navLink.getAttribute('href') === `#${currentSectionId}`;
+                    const navHref = navLink.getAttribute('href');
+                    if (!navHref) return; // Skip if href is missing
+                    
+                    const isTarget = navHref === `#${currentSectionId}`;
                     navLink.classList.toggle('active', isTarget);
                     
                     // Specific styling for light theme active link
@@ -852,15 +915,18 @@
             updateActiveLink();
 
             // --- Mobile Menu Toggle ---
-            document.getElementById('mobile-menu-button').addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-                mobileMenu.classList.toggle('block');
-            });
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    mobileMenu.classList.toggle('block');
+                });
+            }
 
             // --- Close mobile menu on link click ---
             navLinks.forEach(link => {
                 link.addEventListener('click', function() {
-                    if(mobileMenu.classList.contains('block')) {
+                    if(mobileMenu && mobileMenu.classList.contains('block')) {
                        mobileMenu.classList.replace('block', 'hidden');
                     }
                 });
@@ -896,6 +962,7 @@
                         } else if (response.status === 429 || response.status >= 500) {
                             // Throttling or server error, wait and retry
                             const delay = baseDelay * Math.pow(2, attempt) + Math.random() * 1000;
+                            // Do not log retry attempts to the console
                             await new Promise(resolve => setTimeout(resolve, delay));
                             attempt++;
                         } else {
@@ -906,6 +973,7 @@
                          // Network error, retry
                          if (attempt >= maxRetries - 1) throw error;
                          const delay = baseDelay * Math.pow(2, attempt) + Math.random() * 1000;
+                         // Do not log retry attempts to the console
                          await new Promise(resolve => setTimeout(resolve, delay));
                          attempt++;
                     }
@@ -918,13 +986,18 @@
                 const targetElement = document.getElementById(targetElementId);
                 if (!targetElement) return;
 
+                if (GEMINI_API_KEY === "YOUR_API_KEY_HERE") {
+                    targetElement.classList.remove('hidden');
+                    targetElement.innerHTML = `<p class="text-red-600">API Key not configured by the site owner.</p>`;
+                    return;
+                }
+
                 // Show loading state
                 targetElement.classList.remove('hidden');
                 targetElement.innerHTML = `<div class="flex items-center"><span class="spinner"></span><span>Generating key contributions...</span></div>`;
                 button.disabled = true;
 
-                const apiKey = ""; // API key will be provided by the environment
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`;
 
                 const systemPrompt = "You are an expert academic reviewer. Your job is to read an abstract and concisely list the top 3-4 'Key Contributions' or 'Main Findings' as bullet points. Be specific and scientific, but avoid overly technical jargon. Start directly with the bullet points.";
                 const userQuery = `List the Key Contributions of this abstract:\n\n"${abstractText}"`;
@@ -951,23 +1024,37 @@
                     const candidate = result.candidates?.[0];
                     if (candidate && candidate.content?.parts?.[0]?.text) {
                         let text = candidate.content.parts[0].text;
-                        // Simple formatting for bullet points
-                        text = text.replace(/•/g, '<ul><li>')
-                                   .replace(/\*/g, '<ul><li>')
-                                   .replace(/\n/g, '</li><li>')
-                                   .replace(/<li>$/, '') + '</li></ul>';
-                        text = text.replace(/<ul><li><\/li>/g, '<ul>')
-                                   .replace(/<\/li><\/ul>/g, '</ul>');
+                        
+                        // --- FIX 3: More robust bullet point formatting ---
+                        const lines = text.split('\n');
+                        let html = '<ul>';
+                        for (const line of lines) {
+                            let cleanLine = line.trim();
+                            if (cleanLine.startsWith('•') || cleanLine.startsWith('*')) {
+                                cleanLine = cleanLine.substring(1).trim(); // Remove bullet
+                            }
+                            if (cleanLine.length > 0) {
+                                html += `<li>${cleanLine}</li>`;
+                            }
+                        }
+                        html += '</ul>';
+                        text = html;
+                        // --- End of Fix 3 ---
                         
                         targetElement.innerHTML = text;
                         targetElement.classList.add('gemini-output'); // Add the nice styling
                     } else {
-                        throw new Error('Invalid response from API.');
+                        // Handle cases where the API returns a safety block or empty content
+                        let errorMessage = 'Invalid response from API.';
+                        if (result.candidates && result.candidates[0].finishReason === 'SAFETY') {
+                            errorMessage = 'Content generation blocked due to safety settings.';
+                        }
+                        throw new Error(errorMessage);
                     }
 
                 } catch (error) {
                     console.error('Gemini API call failed:', error);
-                    targetElement.innerHTML = `<p class="text-red-600">Sorry, I couldn't generate the contributions at this time.</p>`;
+                    targetElement.innerHTML = `<p class="text-red-600">Sorry, I couldn't generate the contributions at this time. (Error: ${error.message})</p>`;
                 } finally {
                     button.disabled = false;
                 }
@@ -981,7 +1068,7 @@
                     
                     // Toggle visibility if already generated
                     const targetElement = document.getElementById(targetId);
-                    if (targetElement && targetElement.innerHTML !== '' && !targetElement.querySelector('.spinner')) {
+                    if (targetElement && targetElement.innerHTML !== '' && !targetElement.querySelector('.spinner') && !targetElement.querySelector('.text-red-600')) {
                         targetElement.classList.toggle('hidden');
                     } else {
                         callGeminiContributions(abstract, targetId, button);
@@ -998,26 +1085,39 @@
             const chatSendBtn = document.getElementById('chat-send-btn');
             const chatMessages = document.getElementById('chat-messages');
 
-            chatToggleBtn.addEventListener('click', () => {
-                chatWidget.classList.toggle('visible');
-            });
+            if (chatToggleBtn) {
+                chatToggleBtn.addEventListener('click', () => {
+                    if (chatWidget) {
+                        chatWidget.classList.toggle('visible');
+                        if (chatWidget.classList.contains('visible') && chatInput) {
+                            chatInput.focus();
+                        }
+                    }
+                });
+            }
             
-            chatCloseBtn.addEventListener('click', () => {
-                chatWidget.classList.remove('visible');
-            });
+            if (chatCloseBtn) {
+                chatCloseBtn.addEventListener('click', () => {
+                    if (chatWidget) chatWidget.classList.remove('visible');
+                });
+            }
 
-            chatForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const userQuery = chatInput.value.trim();
-                if (userQuery) {
-                    addMessageToChat(userQuery, 'user');
-                    chatInput.value = '';
-                    chatSendBtn.disabled = true;
-                    callGeminiChat(userQuery);
-                }
-            });
+            if (chatForm) {
+                chatForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (!chatInput) return;
+                    const userQuery = chatInput.value.trim();
+                    if (userQuery) {
+                        addMessageToChat(userQuery, 'user');
+                        chatInput.value = '';
+                        if(chatSendBtn) chatSendBtn.disabled = true;
+                        callGeminiChat(userQuery);
+                    }
+                });
+            }
 
             function addMessageToChat(text, sender, isLoading = false) {
+                if (!chatMessages) return;
                 const msgDiv = document.createElement('div');
                 msgDiv.classList.add('chat-message', sender);
                 
@@ -1035,11 +1135,16 @@
             }
 
             async function callGeminiChat(userQuery) {
-                addMessageToChat('', 'bot', true); // Show loading bubble
-                chatSendBtn.disabled = true;
+                if (GEMINI_API_KEY === "YOUR_API_KEY_HERE") {
+                    addMessageToChat("The AI assistant is not configured. (Missing API Key)", 'bot');
+                    if(chatSendBtn) chatSendBtn.disabled = false;
+                    return;
+                }
 
-                const apiKey = ""; // API key will be provided by the environment
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+                addMessageToChat('', 'bot', true); // Show loading bubble
+                if(chatSendBtn) chatSendBtn.disabled = true;
+
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`;
 
                 const systemPrompt = `You are an AI assistant for Parisa Kavianpour's academic website. Your name is 'AI Research Assistant'. You MUST answer questions based *only* on the provided context. Be professional, concise, and helpful. If the answer is not in the context, say 'I do not have that information in my knowledge base.' Do not make up information.
                 
@@ -1084,17 +1189,22 @@
                         addMessageToChat(botResponse, 'bot');
 
                     } else {
-                        throw new Error('Invalid response from API.');
+                        // Handle cases where the API returns a safety block or empty content
+                        let errorMessage = 'Invalid response from API.';
+                        if (result.candidates && result.S[0].finishReason === 'SAFETY') {
+                            errorMessage = 'Content generation blocked due to safety settings.';
+                        }
+                        throw new Error(errorMessage);
                     }
 
                 } catch (error) {
                     console.error('Gemini Chat API call failed:', error);
                     const loadingBubble = document.getElementById('loading-bubble');
                     if (loadingBubble) loadingBubble.remove();
-                    addMessageToChat("Sorry, I'm having trouble connecting right now.", 'bot');
+                    addMessageToChat(`Sorry, I'm having trouble connecting right now. (Error: ${error.message})`, 'bot');
                 } finally {
-                    chatSendBtn.disabled = false;
-                    chatInput.focus();
+                    if(chatSendBtn) chatSendBtn.disabled = false;
+                    if(chatInput) chatInput.focus();
                 }
             }
 
