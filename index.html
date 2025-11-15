@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parisa Kavianpour | AI Researcher</title>
+
+	<meta name="description" content="Personal website of Parisa Kavianpour, AI Researcher specializing in Generative AI, NLP, and Deep Learning. View publications, projects, and research interests.">
+	
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Lato -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Favicon (You can replace this with a real one) -->
+    <!-- <link rel="icon" href="images/favicon.png" type="image/png"> -->
+	
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f3f4f6; /* gray-100 */
+            color: #374151; /* gray-700 */
+        }
+        /* Style for the active navigation link */
+        .nav-link.active {
+            background-color: #4f46e5; /* indigo-600 */
+            color: white;
+        }
+        /* Simple animation for section loading */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .content-section {
+            animation: fadeIn 0.5s ease-in-out;
+            /* All sections are visible by default in scroll layout */
+        }
+        .skill-logo {
+            filter: grayscale(100%) opacity(0.7);
+            transition: filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        .skill-logo:hover {
+            filter: grayscale(0%) opacity(1);
+        }
+        /* Style for abstract content */
+        .abstract-content {
+            transition: max-height 0.3s ease-out;
+            overflow: hidden;
+        }
+        /* Styles for Gemini feature */
+        .gemini-output {
+            background-color: #f0fdfa; /* teal-50 */
+            border-left: 4px solid #14b8a6; /* teal-500 */
+            padding: 12px 16px;
+            border-radius: 4px;
+        }
+        .gemini-output ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+        /* Loading spinner */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(0,0,0,.1);
+            border-left-color: #14b8a6; /* teal-500 */
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin-right: 8px;
+        }
+
+        /* --- Chatbot Styles --- */
+        #chat-toggle-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #4f46e5; /* indigo-600 */
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        #chat-toggle-btn:hover {
+            background-color: #4338ca; /* indigo-700 */
+            transform: scale(1.05);
+        }
+        #chat-widget {
+            position: fixed;
+            bottom: 6.5rem;
+            right: 2rem;
+            width: 90%;
+            max-width: 400px;
+            height: 60vh;
+            max-height: 500px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0.95) translateY(10px);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease-out;
+        }
+        #chat-widget.visible {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+        /* Mobile responsive chat */
+        @media (max-width: 768px) {
+            #chat-widget {
+                width: 90%;
+                height: 70vh;
+                max-height: none;
+                bottom: 2rem;
+                right: 5%;
+            }
+             #chat-toggle-btn {
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+
+        #chat-header {
+            background-color: #4f46e5; /* indigo-600 */
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #chat-header h3 {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        #chat-close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        #chat-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background-color: #f9fafb; /* gray-50 */
+        }
+        .chat-message {
+            margin-bottom: 0.75rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            max-width: 85%;
+            word-wrap: break-word;
+        }
+        .chat-message.user {
+            background-color: #e0e7ff; /* indigo-100 */
+            color: #3730a3; /* indigo-800 */
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        .chat-message.bot {
+            background-color: #e5e7eb; /* gray-200 */
+            color: #1f2937; /* gray-800 */
+            align-self: flex-start;
+            margin-right: auto;
+        }
+         .chat-message.bot.loading {
+            display: flex;
+            align-items: center;
+        }
+        .chat-message.bot .spinner {
+            border-left-color: #4f46e5;
+        }
+
+        #chat-form {
+            display: flex;
+            padding: 0.75rem;
+            border-top: 1px solid #e5e7eb; /* gray-200 */
+            background-color: white;
+        }
+        #chat-input {
+            flex-grow: 1;
+            border: 1px solid #d1d5db; /* gray-300 */
+            border-radius: 6px;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.9rem;
+        }
+        #chat-input:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.3);
+        }
+        #chat-send-btn {
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0 1rem;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        #chat-send-btn:hover {
+            background-color: #4338ca;
+        }
+        #chat-send-btn:disabled {
+            background-color: #a5b4fc; /* indigo-300 */
+            cursor: not-allowed;
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/90 backdrop-blur-sm sticky top-0 z-50 shadow-md">
+        <!-- ... existing header code ... -->
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <div class="text-2xl font-bold text-indigo-600">Parisa Kavianpour</div>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-1 mx-auto">
+                <a href="#home" class="nav-link active py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="home">Home</a>
+                <a href="#publications" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="publications">Publications</a>
+                <a href="#experience" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="experience">Experience</a>
+                <a href="#projects" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="projects">Projects</a>
+                <a href="#education" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="education">Education</a>
+                <a href="#skills" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="skills">Skills</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t border-gray-200">
+            <a href="#home" class="nav-link-mobile active block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="home">Home</a>
+            <a href="#publications" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="publications">Publications</a>
+            <a href="#experience" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="experience">Experience</a>
+            <a href="#projects" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="projects">Projects</a>
+            <a href="#education" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="education">Education</a>
+            <a href="#skills" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="skills">Skills</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-6 lg:p-12 flex flex-col lg:flex-row gap-12">
+        
+        <!-- Left Sidebar -->
+        <aside class="w-full lg:w-1/3 xl:w-1/4">
+            <!-- ... existing aside code ... -->
+            <div class="bg-white p-6 rounded-lg shadow-lg lg:sticky lg:top-24">
+                <!-- Add a placeholder image or path to a real image -->
+                <img src="https://placehold.co/600x600/E0E7FF/4F46E5?text=PK" alt="Parisa Kavianpour" class="w-40 h-40 rounded-full mx-auto border-4 border-indigo-500">
+                <h1 class="text-3xl font-bold text-gray-900 text-center mt-4">Parisa Kavianpour</h1>
+                <p class="text-center text-indigo-600 mt-1">AI/ML Researcher</p>
+                
+                <ul class="mt-6 space-y-3 text-gray-600">
+                    <li class="flex items-center">
+                        <i class="fas fa-map-marker-alt w-6 text-center text-lg text-indigo-500"></i>
+                        <span class="ml-3">Tehran, Iran</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-envelope w-6 text-center text-lg text-indigo-500"></i>
+                        <a href="mailto:p.kavianpour08@umail.umz.ac.ir" class="ml-3 hover:text-indigo-500">p.kavianpour08@umail.umz.ac.ir</a>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fab fa-linkedin w-6 text-center text-lg text-indigo-500"></i>
+                        <a href="https://www.linkedin.com/in/parisa-kavianpour-a8ab1a195/" target="_blank" class="ml-3 hover:text-indigo-500">LinkedIn Profile</a>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fab fa-github w-6 text-center text-lg text-indigo-500"></i>
+                        <a href="https://github.com/parisa-kavian" target="_blank" class="ml-3 hover:text-indigo-500">GitHub Profile</a>
+                    </li>
+                    <li class="flex items-center">
+						<i class="fas fa-graduation-cap w-6 text-center text-lg text-indigo-500"></i>
+						<a href="https://scholar.google.com/citations?user=xR-FY-AAAAAJ&hl=en" target="_blank" class="ml-3 hover:text-indigo-500">Google Scholar</a>
+					</li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Right Content Area -->
+        <div class="w-full lg:w-2/3 xl:w-3/4 space-y-16">
+            <!-- Home Section (About Me) -->
+            <section id="home" class="content-section">
+                <!-- ... existing home section code ... -->
+                <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">About Me</h2>
+                
+                <div class="text-lg space-y-4 text-gray-700 leading-relaxed mt-8">
+                    <p>
+                        I am an AI and Machine Learning researcher passionate about leveraging advanced computational techniques to solve complex, real-world problems. My journey into AI began from an unconventional starting point: Civil and Earthquake Engineering.
+                    </p>
+                    <p>
+                        During my M.Sc., I was captivated by the challenge of predicting seismic events—a problem defined by massive, high-dimensional, and chaotic time-series data. This led to my thesis, "Earthquake Prediction Using Deep Learning," where I explored how models like CNNs and LSTMs could identify subtle patterns in seismic data that traditional methods might miss. This project was my gateway into the world of deep learning, resulting in multiple publications, including a highly-cited paper [Citations: 150+] in *The Journal of Supercomputing*.
+                    </p>
+                    <p>
+                        This academic pivot solidified my passion for AI. After graduating, I immediately began applying these skills in two parallel tracks: one in industry and one in academia.
+                    </p>
+                    <p>
+                        In my industrial roles as a Senior AI Research Developer, I've designed and deployed practical AI solutions, from building hybrid recommender systems to architecting generative AI pipelines using LLMs and RAG.
+                    </p>
+                    <p>
+                        Concurrently, I have maintained a strong, ongoing connection to academia as a **part-time Research Assistant at Tarbiat Modares University**. This role, which continues to the present, allows me to dive deeper into core research challenges. My work here focuses on industrial AI, specifically in `fault diagnosis`, `safety, and reliability`, using advanced techniques like `Domain Adaptation`, `Graph Neural Networks (GNNs)`, and `Physics-Informed Machine Learning`. This research has directly resulted in two Q1 journal publications (`Knowledge-Based Systems` and `Measurement`).
+                    </p>
+                    <p>
+                        This dual-track experience keeps me grounded in real-world applications while pushing my theoretical knowledge. I am now actively seeking Ph.D. opportunities to dedicate myself fully to research, applying my background in time-series analysis and generative models to new and challenging domains.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Publications Section -->
+            <section id="publications" class="content-section">
+                <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Publications</h2>
+                
+                <div class="space-y-6 mt-8">
+                    <!-- Publication 1 -->
+                    <div class="bg-white p-5 rounded-lg shadow">
+                        <p class="font-bold text-lg text-gray-900">A CNN-BILSTM Model with Attention Mechanism for Earthquake Prediction</p>
+                        <p class="text-sm text-gray-600 mt-1"><span class="font-semibold text-gray-800">Kavianpour, P.</span>, Kavianpour, M., Jahani, E., & Ramezani, A. (2023).</p>
+                        <p class="text-sm text-indigo-600 mt-1"><em>The Journal of Supercomputing, Springer.</em> [Citations: 150+]</p>
+                        <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 items-center">
+                            <a href="https://link.springer.com/article/10.1007/s11227-023-05423-7" class="text-indigo-500 hover:text-indigo-700 font-semibold text-sm" target="_blank"><i class="fas fa-link mr-2"></i>Article Link</a>
+                            <button class="toggle-abstract-btn text-indigo-500 hover:text-indigo-700 font-semibold flex items-center text-sm">Read Abstract <i class="fas fa-chevron-down ml-2 transform transition-transform duration-300"></i></button>
+                            <button class="gemini-explain-btn text-teal-600 hover:text-teal-800 font-semibold flex items-center text-sm" 
+                                    data-target="gemini-pub-1"
+                                    data-abstract="This paper introduces a hybrid deep learning model combining a Convolutional Neural Network (CNN) with a Bidirectional Long Short-Term Memory (BiLSTM) network, enhanced by an attention mechanism, for earthquake prediction. The model leverages the CNN to extract spatial features from seismic data and the BiLSTM to capture temporal dependencies, while the attention mechanism focuses on the most informative parts of the time series. Experimental results show superior performance in predicting seismic events compared to other baseline models.">
+                                ✨ Key Contributions
+                            </button>
+                        </div>
+                        <div class="abstract-content hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
+                            <p>This paper introduces a hybrid deep learning model combining a Convolutional Neural Network (CNN) with a Bidirectional Long Short-Term Memory (BiLSTM) network, enhanced by an attention mechanism, for earthquake prediction. The model leverages the CNN to extract spatial features from seismic data and the BiLSTM to capture temporal dependencies, while the attention mechanism focuses on the most informative parts of the time series. Experimental results show superior performance in predicting seismic events compared to other baseline models.</p>
+                        </div>
+                        <!-- New Gemini Output Div -->
+                        <div id="gemini-pub-1" class="gemini-output hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
+                            <!-- Gemini response will be injected here -->
+                        </div>
+                    </div>
+                    <!-- Publication 2 -->
+                    <div class="bg-white p-5 rounded-lg shadow">
+                        <p class="font-bold text-lg text-gray-900">Knowledge Distillation and Enhanced Subdomain Adaptation Using Graph Convolutional Network for Resource-Constrained Fault Diagnosis</p>
+                        <p class="text-sm text-gray-600 mt-1">Kavianpour, M., <span class="font-semibold text-gray-800">Kavianpour, P.</span>, Ramezani, A., & Beheshti, M. (2025).</p>
+                        <p class="text-sm text-indigo-600 mt-1"><em>Knowledge-Based Systems, Elsevier.</em> [Q1, IF: 7.6]</p>
+                        <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 items-center">
+                            <a href="https://www.sciencedirect.com/science/article/pii/S0950705125012924" class="text-indigo-500 hover:text-indigo-700 font-semibold text-sm" target="_blank"><i class="fas fa-link mr-2"></i>Article Link</a>
+                            <button class="toggle-abstract-btn text-indigo-500 hover:text-indigo-700 font-semibold flex items-center text-sm">Read Abstract <i class="fas fa-chevron-down ml-2 transform transition-transform duration-300"></i></button>
+                            <button class="gemini-explain-btn text-teal-600 hover:text-teal-800 font-semibold flex items-center text-sm" 
+                                    data-target="gemini-pub-2"
+                                    data-abstract="Bearing fault diagnosis under varying working conditions faces challenges, including lack of labeled data, distribution discrepancies, and resource constraints. To address these issues, we propose a progressive knowledge distillation framework that transfers knowledge from a complex teacher model, utilizing a Graph Convolutional Network (GCN) with Autoregressive moving average (ARMA) filters, to a compact and efficient student model. To mitigate distribution discrepancies and labeling uncertainty, we introduce Enhanced Local Maximum Mean Square Discrepancy (ELMMSD), which leverages mean and variance statistics in the Reproducing Kernel Hilbert Space (RKHS) and incorporates a priori probability distributions between labels. This approach increases the distance between clustering centers, bridges subdomain gaps, and enhances subdomain alignment reliability. Experimental results on benchmark datasets (CWRU and JNU) demonstrate that the proposed method achieves superior diagnostic accuracy while significantly reducing computational costs. Comprehensive ablation studies validate the effectiveness of each component, highlighting the robustness and adaptability of the approach across diverse working conditions.">
+                                ✨ Key Contributions
+                            </button>
+                        </div>
+                        <div class="abstract-content hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
+                            <img src="images/Knowledgebasedsystems2025.png" 
+                                 alt="Proposed Method for Knowledge Distillation" 
+                                 class="rounded-lg w-full max-w-xl mx-auto my-3 border border-gray-300"
+                                 onerror="this.src='https://placehold.co/600x400/e0e7ff/4f46e5?text=Proposed+Method+Figure'; this.onerror=null;">
+
+                            <p>Bearing fault diagnosis under varying working conditions faces challenges, including lack of labeled data, distribution discrepancies, and resource constraints. To address these issues, we propose a progressive knowledge distillation framework that transfers knowledge from a complex teacher model, utilizing a Graph Convolutional Network (GCN) with Autoregressive moving average (ARMA) filters, to a compact and efficient student model. To mitigate distribution discrepancies and labeling uncertainty, we introduce Enhanced Local Maximum Mean Square Discrepancy (ELMMSD), which leverages mean and variance statistics in the Reproducing Kernel Hilbert Space (RKHS) and incorporates a priori probability distributions between labels. This approach increases the distance between clustering centers, bridges subdomain gaps, and enhances subdomain alignment reliability. Experimental results on benchmark datasets (CWRU and JNU) demonstrate that the proposed method achieves superior diagnostic accuracy while significantly reducing computational costs. Comprehensive ablation studies validate the effectiveness of each component, highlighting the robustness and adaptability of the approach across diverse working conditions.</p>
+                        </div>
+                        <!-- New Gemini Output Div -->
+                        <div id="gemini-pub-2" class="gemini-output hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
+                            <!-- Gemini response will be injected here -->
+                        </div>
+                    </div>
+                    <!-- Publication 3 -->
+                    <div class="bg-white p-5 rounded-lg shadow">
+                        <p class="font-bold text-lg text-gray-900">A Partial-Imbalance Robust Domain Adaptation Framework for Bearing Fault Diagnosis using Physics-Informed Deep Learning</p>
+                        <p class="text-sm text-gray-600 mt-1">Kavianpour, M., & <span class="font-semibold text-gray-800">Kavianpour, P.</span>, Ramezani, A. (2025).</p>
+                        <p class="text-sm text-indigo-600 mt-1"><em>Measurement, Elsevier.</em> [Q1, IF: 5.6]</p>
+                        <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 items-center">
+                            <a href="https://www.sciencedirect.com/science/article/pii/S0263224125022493" class="text-indigo-500 hover:text-indigo-700 font-semibold text-sm" target="_blank"><i class="fas fa-link mr-2"></i>Article Link</a>
+                            <button class="toggle-abstract-btn text-indigo-500 hover:text-indigo-700 font-semibold flex items-center text-sm">Read Abstract <i class="fas fa-chevron-down ml-2 transform transition-transform duration-300"></i></button>
+                            <button class="gemini-explain-btn text-teal-600 hover:text-teal-800 font-semibold flex items-center text-sm" 
+                                    data-target="gemini-pub-3"
+                                    data-abstract="Real-world bearing fault diagnosis faces challenges due to lack of access to labeled data and missing or incomplete samples for certain faulty classes, requiring generated data and methods to mitigate imbalanced class distributions and partial-set problems. To address these challenges, we propose a novel physics-informed deep learning framework using a physics-informed synthetic data generation method with an augmented weighted hybrid domain adaptation approach that combines adversarial training with a novel Multi-Kernel Maximum Mean Squared Discrepancy (MK-MMSD) metric. Unlike traditional Domain adaptation method, MK MMSD considers both the mean and variance of data distributions to effectively bridge the domain gap between synthetic and real unlabeled data. Furthermore, we propose a self-adaptive multi-weight block to address the partial-set problem and a novel re-balanced feature Mixup (RF-Mixup) technique to mitigate imbalanced class distributions. Experimental results on the CWRU and JNU datasets demonstrate the effectiveness of our approach in overcoming these real-world challenges in bearing fault diagnosis.">
+                                ✨ Key Contributions
+                            </button>
+                        </div>
+                        <div class="abstract-content hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
+                            <img src="images/Measurement2025.png" 
+                                 alt="Proposed Method for Physics-Informed Deep Learning" 
+                                 class="rounded-lg w-full max-w-xl mx-auto my-3 border border-gray-300"
+                                 onerror="this.src='https://placehold.co/600x400/e0e7ff/4f46e5?text=Proposed+Method+Figure'; this.onerror=null;">
+                            
+                            <p>Real-world bearing fault diagnosis faces challenges due to lack of access to labeled data and missing or incomplete samples for certain faulty classes, requiring generated data and methods to mitigate imbalanced class distributions and partial-set problems. To address these challenges, we propose a novel physics-informed deep learning framework using a physics-informed synthetic data generation method with an augmented weighted hybrid domain adaptation approach that combines adversarial training with a novel Multi-Kernel Maximum Mean Squared Discrepancy (MK-MMSD) metric. Unlike traditional Domain adaptation method, MK MMSD considers both the mean and variance of data distributions to effectively bridge the domain gap between synthetic and real unlabeled data. Furthermore, we propose a self-adaptive multi-weight block to address the partial-set problem and a novel re-balanced feature Mixup (RF-Mixup) technique to mitigate imbalanced class distributions. Experimental results on the CWRU and JNU datasets demonstrate the effectiveness of our approach in overcoming these real-world challenges in bearing fault diagnosis.</p>
+                        </div>
+                        <!-- New Gemini Output Div -->
+                        <div id="gemini-pub-3" class="gemini-output hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
+                            <!-- Gemini response will be injected here -->
+                        </div>
+                    </div>
+                    <!-- Publication 4 -->
+                    <div class="bg-white p-5 rounded-lg shadow">
+                        <p class="font-bold text-lg text-gray-900">Deep Multi-scale Dilated Convolution Neural Network with Attention Mechanism: A Novel Method for Earthquake Magnitude Classification</p>
+                        <p class="text-sm text-gray-600 mt-1"><span class="font-semibold text-gray-800">Kavianpour, P.</span>, Kavianpour, M., & Ramezani, A. (2022).</p>
+                        <p class="text-sm text-indigo-600 mt-1"><em>8th International Conference on Signal Processing and Intelligent Systems (ICSPIS), IEEE.</em></p>
+                        <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 items-center">
+                            <a href="https://ieeexplore.ieee.org/abstract/document/10065094" class="text-indigo-500 hover:text-indigo-700 font-semibold text-sm" target="_blank"><i class="fas fa-link mr-2"></i>Article Link</a>
+                            <button class="toggle-abstract-btn text-indigo-500 hover:text-indigo-700 font-semibold flex items-center text-sm">Read Abstract <i class="fas fa-chevron-down ml-2 transform transition-transform duration-300"></i></button>
+                            <button class="gemini-explain-btn text-teal-600 hover:text-teal-800 font-semibold flex items-center text-sm" 
+                                    data-target="gemini-pub-4"
+                                    data-abstract="This conference paper presents a deep learning model for classifying earthquake magnitudes. We utilize multi-scale dilated convolutions to capture features at different temporal resolutions from seismic waveforms. An attention mechanism is incorporated to weigh the importance of different time steps, leading to improved classification accuracy.">
+                                ✨ Key Contributions
+                            </button>
+                        </div>
+                        <div class="abstract-content hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
+                            <p>[Placeholder Abstract] This conference paper presents a deep learning model for classifying earthquake magnitudes. We utilize multi-scale dilated convolutions to capture features at different temporal resolutions from seismic waveforms. An attention mechanism is incorporated to weigh the importance of different time steps, leading to improved classification accuracy.</p>
+                        </div>
+                        <!-- New Gemini Output Div -->
+                        <div id="gemini-pub-4" class="gemini-output hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
+                            <!-- Gemini response will be injected here -->
+                        </div>
+                    </div>
+                    <!-- Publication 5 & 6... -->
+                    <div class="bg-white p-5 rounded-lg shadow">
+                        <p class="font-bold text-lg text-gray-900">Earthquake Magnitude Prediction using Spatio-temporal Features Learning Based on a Hybrid CNN-BILSTM Model</p>
+                        <p class="text-sm text-gray-600 mt-1"><span class="font-semibold text-gray-800">Kavianpour, P.</span>, Kavianpour, M., Jahani, E., & Ramezani, A. (2021).</p>
+                        <p class="text-sm text-indigo-600 mt-1"><em>7th International Conference on Signal Processing and Intelligent Systems (ICSPIS), IEEE.</em></p>
+                        <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 items-center">
+                            <a href="https://ieeexplore.ieee.org/abstract/document/9703447" class="text-indigo-500 hover:text-indigo-700 font-semibold text-sm" target="_blank"><i class="fas fa-link mr-2"></i>Article Link</a>
+                             <button class="gemini-explain-btn text-teal-600 hover:text-teal-800 font-semibold flex items-center text-sm" 
+                                    data-target="gemini-pub-5"
+                                    data-abstract="This paper, an earlier version of our journal publication, proposes a hybrid CNN-BiLSTM model to learn spatio-temporal features for earthquake magnitude prediction. The model effectively combines spatial feature extraction from seismic sensor data with temporal sequence learning to forecast the magnitude of future seismic events.">
+                                ✨ Key Contributions
+                            </button>
+                        </div>
+                         <!-- New Gemini Output Div -->
+                        <div id="gemini-pub-5" class="gemini-output hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
+                            <!-- Gemini response will be injected here -->
+                        </div>
+                    </div>
+                    <div class="bg-white p-5 rounded-lg shadow">
+                        <p class="font-bold text-lg text-gray-900">An Intelligent Gearbox Fault Diagnosis under Different Operating Conditions using Adversarial Domain Adaptation</p>
+                        <p class="text-sm text-gray-600 mt-1">Kavianpour, M., Ghorvei, M., <span class="font-semibold text-gray-800">Kavianpour, P.</span>, Ramezani, A., & Beheshti, M. T. H. (2022).</p>
+                        <p class="text-sm text-indigo-600 mt-1"><em>8th International Conference on Control, Instrumentation and Automation (ICCIA), IEEE.</em></p>
+                        <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 items-center">
+                            <a href="https://ieeexplore.ieee.org/abstract/document/9998492" class="text-indigo-500 hover:text-indigo-700 font-semibold text-sm" target="_blank"><i class="fas fa-link mr-2"></i>Article Link</a>
+                             <button class="gemini-explain-btn text-teal-600 hover:text-teal-800 font-semibold flex items-center text-sm" 
+                                    data-target="gemini-pub-6"
+                                    data-abstract="This paper tackles the problem of diagnosing gearbox faults when the machine operates under different conditions (e.g., varying speeds or loads). We use an adversarial domain adaptation technique, where the model is trained to learn features that are indistinguishable between different operating conditions, thus improving its generalization and robustness in real-world scenarios.">
+                                ✨ Key Contributions
+                            </button>
+                        </div>
+                         <!-- New Gemini Output Div -->
+                        <div id="gemini-pub-6" class="gemini-output hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
+                            <!-- Gemini response will be injected here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="content-section">
+                <!-- ... existing experience section code ... -->
+                <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Experience</h2>
+                <div class="mt-8 space-y-8">
+                    
+                    <div class="relative pl-8">
+                        <div class="absolute left-0 top-1 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-sm"></div>
+                        <p class="text-sm text-gray-500">Sep. 2024 - Sep. 2025</p>
+                        <h3 class="text-xl font-bold text-gray-900 mt-1">Senior AI Research Developer</h3>
+                        <p class="text-md font-semibold text-indigo-600">Haf Hashtad (780)</p>
+                        <ul class="mt-3 list-disc list-outside ml-5 space-y-2 text-gray-700">
+                            <li>Architected a pipeline using GPT API to crawl, summarize, and analyze sentiment of public reviews, then paraphrased feedback into unique testimonials, boosting user trust.</li>
+                            <li>Implemented automated social media monitoring (Twitter, Telegram) using n8n to analyze competitors.</li>
+                            <li>Designed and deployed a RAG-based FAQ chatbot, reducing CRM support tickets by 43% and achieving over 75% user satisfaction.</li>
+                        </ul>
+                    </div>
+
+                    <div class="relative pl-8">
+                        <div class="absolute left-0 top-1 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-sm"></div>
+                        <p class="text-sm text-gray-500">Jul. 2023 - Sep. 2024</p>
+                        <h3 class="text-xl font-bold text-gray-900 mt-1">Senior AI Research Developer</h3>
+                        <p class="text-md font-semibold text-indigo-600">Hesse Tazegi Company</p>
+                        <ul class="mt-3 list-disc list-outside ml-5 space-y-2 text-gray-700">
+                            <li>Designed and implemented a hybrid recommender system (collaborative filtering & content-based) to enhance user engagement.</li>
+                            <li>Deployed a Question-Answering system using a fine-tuned BERT model, significantly reducing customer service response times.</li>
+                        </ul>
+                    </div>
+
+                    <div class="relative pl-8">
+                        <div class="absolute left-0 top-1 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-sm"></div>
+                        <p class="text-sm text-gray-500">Feb. 2022 - Present</p>
+                        <h3 class="text-xl font-bold text-gray-900 mt-1">Research Assistant (Part-Time)</h3>
+                        <p class="text-md font-semibold text-indigo-600">Tarbiat Modares University (Advanced Control System Lab)</p>
+                        <ul class="mt-3 list-disc list-outside ml-5 space-y-2 text-gray-700">
+                            <li>Conducting ongoing research in industrial AI, focusing on `Fault Diagnosis`, `Safety & Reliability`.</li>
+                            <li>Applying advanced methods: `Domain Adaptation`, `GNNs`, and `Physics-Informed Machine Learning`.</li>
+                            <li>This research directly resulted in two Q1 journal publications in `Knowledge-Based Systems` and `Measurement`.</li>
+                        </ul>
+                    </div>
+
+                    <div class="relative pl-8">
+                        <div class="absolute left-0 top-1 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-sm"></div>
+                        <p class="text-sm text-gray-500">Sep. 2018 - Feb. 2022</p>
+                        <h3 class="text-xl font-bold text-gray-900 mt-1">Research & Teaching Assistant</h3>
+                        <p class="text-md font-semibold text-indigo-600">University of Mazandaran (Earthquake Lab)</p>
+                        <ul class="mt-3 list-disc list-outside ml-5 space-y-2 text-gray-700">
+                            <li>Led M.Sc. thesis research applying novel deep learning models to seismic time-series prediction, producing 3 papers.</li>
+                            <li>Served as TA for M.Sc. level courses in Soft Computing and Optimization.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="content-section">
+                <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Selected Projects</h2>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-2xl font-bold text-gray-900">MediChat-RAG: Medical Conversational AI</h3>
+                            <p class="mt-3 text-gray-600">Developed a stateful medical chatbot using LangChain and GPT-40-mini. Implemented a Retrieval-Augmented Generation (RAG) pipeline to query a medical knowledge base, enabling the bot to provide context-aware and accurate responses.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">RAG</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">LangChain</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">LLM</span>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="https://github.com/parisa-kavian/MediChat-RAG" target="_blank" class="font-semibold text-indigo-600 hover:text-indigo-500 transition-colors">
+                                <i class="fab fa-github mr-2"></i>View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-2xl font-bold text-gray-900">Xsum-FlanT5: Efficient Summarization</h3>
+                            <p class="mt-3 text-gray-600">Fine-tuned a FLAN-T5 model for high-performance news summarization on the XSum dataset. Utilized parameter-efficient fine-tuning (PEFT) techniques (LoRA) to dramatically reduce computational costs while achieving competitive scores.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Fine-Tuning</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">FLAN-T5</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">PEFT/LoRA</span>
+                            </div>
+                        </div>
+                         <div class="p-6 pt-0">
+                            <a href="https://github.com/parisa-kavian/Xsum-FlanT5" target="_blank" class="font-semibold text-indigo-600 hover:text-indigo-500 transition-colors">
+                                <i class="fab fa-github mr-2"></i>View on GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-2xl font-bold text-gray-900">AI-Plan-Generator: Personalized Agent</h3>
+                            <p class="mt-3 text-gray-600">Built an autonomous agent using LangChain and OpenAI API. The agent intelligently processes user goals (e.g., "lose weight") to generate customized, actionable weekly workout routines and meal plans.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">LangChain</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Agent</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">OpenAI API</span>
+                            </div>
+                        </div>
+                         <div class="p-6 pt-0">
+                            <a href="https://github.com/parisa-kavian/AI-Plan-Generator" target="_blank" class="font-semibold text-indigo-600 hover:text-indigo-500 transition-colors">
+                                <i class="fab fa-github mr-2"></i>View on GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-2xl font-bold text-gray-900">Named-Entity-Recognition (NER)</h3>
+                            <p class="mt-3 text-gray-600">Developed and trained a custom NER model to identify and extract specific entities (e.g., locations, organizations, technical terms) from unstructured text, a core task in advanced information retrieval and NLP pipelines.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">NER</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">NLP</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">spaCy</span>
+                            </div>
+                        </div>
+                         <div class="p-6 pt-0">
+                            <a href="https://github.com/parisa-kavian/Named-Entity-Recognition" target="_blank" class="font-semibold text-indigo-600 hover:text-indigo-500 transition-colors">
+                                <i class="fab fa-github mr-2"></i>View on GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education" class="content-section">
+                <!-- ... existing education section code ... -->
+                <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Education</h2>
+                <div class="mt-8 space-y-6">
+                     <div class="bg-white p-5 rounded-lg shadow">
+                        <p class="font-bold text-lg text-gray-900">M.Sc. in Civil Engineering - Earthquake Engineering</p>
+                        <p class="text-md text-gray-700 mt-1">University of Mazandaran</p>
+                        <p class="text-sm text-indigo-600 mt-1">Sep. 2018 - Feb. 2022</p>
+                        <div class="mt-3">
+                            <p class="text-gray-600"><span class="font-semibold text-gray-800">Thesis:</span> Earthquake Prediction Using Deep Learning: A Spatiotemporal Time-Series Analysis. (GPA: 19.5/20)</p>
+                            <p class="text-gray-600 mt-2"><span class="font-semibold text-gray-800">Awards:</span> The Best Thesis of the Year in the Civil Engineering Department (2021).</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-5 rounded-lg shadow">
+                        <p class="font-bold text-lg text-gray-900">B.Sc. in Civil Engineering - Structural Engineering</p>
+                        <p class="text-md text-gray-700 mt-1">Allameh Mohades Nouri University</p>
+                        <p class="text-sm text-indigo-600 mt-1">Sep. 2013 - Sep. 2018</p>
+                         <div class="mt-3">
+                            <p class="text-gray-600"><span class="font-semibold text-gray-800">Thesis:</span> Evaluation of Seismic Behavior of Steel Structures Equipped with Metal Dampers. (GPA: 19.5/20)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="content-section">
+                <!-- ... existing skills section code ... -->
+                <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Skills</h2>
+                
+                <h3 class="text-2xl font-bold text-gray-900 mt-10 mb-6">Key Technologies & Frameworks</h3>
+                <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-8 text-center">
+                    <!-- Python -->
+                    <div class="flex flex-col items-center justify-center">
+                        <img src="https://cdn.simpleicons.org/python/4F46E5" alt="Python" class="w-16 h-16 skill-logo">
+                        <span class="mt-3 font-semibold text-gray-800">Python</span>
+                    </div>
+                    <!-- PyTorch -->
+                    <div class="flex flex-col items-center justify-center">
+                        <img src="https://cdn.simpleicons.org/pytorch/4F46E5" alt="PyTorch" class="w-16 h-16 skill-logo">
+                        <span class="mt-3 font-semibold text-gray-800">PyTorch</span>
+                    </div>
+                    <!-- TensorFlow -->
+                    <div class="flex flex-col items-center justify-center">
+                        <img src="https://cdn.simpleicons.org/tensorflow/4F46E5" alt="TensorFlow" class="w-16 h-16 skill-logo">
+                        <span class="mt-3 font-semibold text-gray-800">TensorFlow</span>
+                    </div>
+                    <!-- Hugging Face -->
+                     <div class="flex flex-col items-center justify-center">
+                        <img src="https://cdn.simpleicons.org/huggingface/4F46E5" alt="Hugging Face" class="w-16 h-16 skill-logo">
+                        <span class="mt-3 font-semibold text-gray-800">Hugging Face</span>
+                    </div>
+                    <!-- Scikit-learn -->
+                    <div class="flex flex-col items-center justify-center">
+                        <img src="https://cdn.simpleicons.org/scikitlearn/4F46E5" alt="Scikit-learn" class="w-16 h-16 skill-logo">
+                        <span class="mt-3 font-semibold text-gray-800">Scikit-learn</span>
+                    </div>
+                    <!-- LangChain -->
+                    <div class="flex flex-col items-center justify-center">
+                        <img src="https://cdn.simpleicons.org/langchain/4F46E5" alt="LangChain" class="w-16 h-16 skill-logo">
+                        <span class="mt-3 font-semibold text-gray-800">LangChain</span>
+                    </div>
+                    <!-- Docker -->
+                    <div class="flex flex-col items-center justify-center">
+                        <img src="https://cdn.simpleicons.org/docker/4F46E5" alt="Docker" class="w-16 h-16 skill-logo">
+                        <span class="mt-3 font-semibold text-gray-800">Docker</span>
+                    </div>
+                    <!-- SQL -->
+                    <div class="flex flex-col items-center justify-center">
+                        <img src="https://cdn.simpleicons.org/mysql/4F46E5" alt="SQL" class="w-16 h-16 skill-logo">
+                        <span class="mt-3 font-semibold text-gray-800">SQL</span>
+                    </div>
+                    <!-- Git -->
+                    <div class="flex flex-col items-center justify-center">
+                        <img src="https://cdn.simpleicons.org/git/4F46E5" alt="Git" class="w-16 h-16 skill-logo">
+                        <span class="mt-3 font-semibold text-gray-800">Git</span>
+                    </div>
+                    <!-- MATLAB -->
+                    <div class="flex flex-col items-center justify-center">
+                        <img src="https://cdn.simpleicons.org/mathworks/4F46E5" alt="MATLAB" class="w-16 h-16 skill-logo">
+                        <span class="mt-3 font-semibold text-gray-800">MATLAB</span>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-16 mb-6">Areas of Expertise</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Generative AI & NLP</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">LLMs (Llama, GPT, T5)</span>
+                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">RAG</span>
+                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Fine-Tuning</span>
+                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Prompt Engineering</span>
+                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">BERT</span>
+                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Sentiment Analysis</span>
+                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">NLTK, SpaCy, Hazm</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Deep Learning & ML</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">CNNs</span>
+                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">RNNs/LSTM</span>
+                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Transformers</span>
+                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">GNNs</span>
+                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Domain Adaptation</span>
+                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Recommender Systems</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+    
+    <!-- AI Chatbot -->
+    <button id="chat-toggle-btn" title="AI Research Assistant">
+        <i class="fas fa-robot"></i>
+    </button>
+
+    <div id="chat-widget" class="">
+        <div id="chat-header">
+            <h3>AI Research Assistant</h3>
+            <button id="chat-close-btn" title="Close chat">&times;</button>
+        </div>
+        <div id="chat-messages">
+            <div class="chat-message bot">
+                Hello! I'm Parisa's AI assistant. How can I help you understand her research and projects today?
+            </div>
+        </div>
+        <form id="chat-form">
+            <input type="text" id="chat-input" placeholder="Ask about research, projects, skills..." autocomplete="off">
+            <button type="submit" id="chat-send-btn" title="Send message">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </form>
+    </div>
+    <!-- End AI Chatbot -->
+
+    <footer class="text-center py-8 text-sm text-gray-500 border-t border-gray-200 mt-12 bg-white">
+        <p>&copy; 2025 Parisa Kavianpour. All rights reserved.</p>
+        <p>Built with Tailwind CSS</p>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Global state for chatbot ---
+            let chatHistory = [];
+            let websiteContext = '';
+
+            // --- Function to gather all text content from the page ---
+            function gatherWebsiteContext() {
+                let context = "";
+                
+                // 1. About Me
+                const home = document.getElementById('home');
+                if (home) context += "About Parisa Kavianpour:\n" + home.textContent.trim() + "\n\n";
+
+                // 2. Publications
+                context += "Publications:\n";
+                document.querySelectorAll('#publications .bg-white.shadow').forEach(pub => {
+                    const title = pub.querySelector('.font-bold.text-lg');
+                    const abstract = pub.querySelector('[data-abstract]');
+                    if (title) context += "Title: " + title.textContent.trim() + "\n";
+                    if (abstract) context += "Abstract: "_ + abstract.dataset.abstract.trim() + "\n\n";
+                });
+
+                // 3. Experience
+                context += "Experience:\n";
+                 document.querySelectorAll('#experience .relative.pl-8').forEach(exp => {
+                    const title = exp.querySelector('h3');
+                    const company = exp.querySelector('p.text-md');
+                    const details = exp.querySelector('ul');
+                    if (title) context += "Role: " + title.textContent.trim() + "\n";
+                    if (company) context += "At: " + company.textContent.trim() + "\n";
+                    if (details) context += "Details: " + details.textContent.trim() + "\n\n";
+                });
+
+                // 4. Projects
+                context += "Projects:\n";
+                 document.querySelectorAll('#projects .bg-white.shadow-lg').forEach(proj => {
+                    const title = proj.querySelector('h3');
+                    const desc = proj.querySelector('p');
+                    if (title) context += "Project: " + title.textContent.trim() + "\n";
+                    if (desc) context += "Description: " + desc.textContent.trim() + "\n\n";
+                });
+
+                // 5. Skills
+                context += "Skills:\n";
+                document.querySelectorAll('#skills .font-semibold, #skills .font-medium').forEach(skill => {
+                    context += skill.textContent.trim() + ", ";
+                });
+                context += "\n\n";
+                
+                return context;
+            }
+
+            // --- Initialize website context ---
+            websiteContext = gatherWebsiteContext();
+            // console.log("Website Context:", websiteContext); // For debugging
+
+            // --- Navigation Logic for Scrolling ---
+            const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // Function to handle active link highlighting
+            function updateActiveLink() {
+                let currentSectionId = 'home'; // Default to home
+                
+                // Find the section that is currently most visible
+                document.querySelectorAll('.content-section').forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    // Check if the top of the section is within the top 1/3 of the viewport
+                    if (rect.top >= 0 && rect.top <= window.innerHeight / 3) {
+                        currentSectionId = section.id;
+                    }
+                });
+
+                // Update active class for all nav links
+                document.querySelectorAll('.nav-link, .nav-link-mobile').forEach(navLink => {
+                    const isTarget = navLink.getAttribute('href') === `#${currentSectionId}`;
+                    navLink.classList.toggle('active', isTarget);
+                    
+                    // Specific styling for light theme active link
+                    if (isTarget) {
+                        navLink.classList.add('bg-indigo-600', 'text-white');
+                        navLink.classList.remove('text-gray-700', 'hover:bg-gray-200');
+                    } else {
+                        navLink.classList.remove('bg-indigo-600', 'text-white');
+                        navLink.classList.add('text-gray-700', 'hover:bg-gray-200');
+                    }
+                });
+            }
+
+            // Add scroll listener to update active links
+            window.addEventListener('scroll', updateActiveLink);
+            // Call once on load
+            updateActiveLink();
+
+            // --- Mobile Menu Toggle ---
+            document.getElementById('mobile-menu-button').addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('block');
+            });
+
+            // --- Close mobile menu on link click ---
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if(mobileMenu.classList.contains('block')) {
+                       mobileMenu.classList.replace('block', 'hidden');
+                    }
+                });
+            });
+
+            // --- Abstract Toggle Logic ---
+            document.querySelectorAll('.toggle-abstract-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    // Find the abstract content related to THIS button
+                    const abstractContent = button.closest('.bg-white').querySelector('.abstract-content');
+                    const icon = button.querySelector('i');
+                    
+                    if (abstractContent) {
+                        abstractContent.classList.toggle('hidden');
+                    }
+                    if (icon) {
+                        icon.classList.toggle('rotate-180');
+                    }
+                });
+            });
+
+
+            // --- Gemini API ---
+
+            // Helper function for exponential backoff
+            async function fetchWithBackoff(url, options, maxRetries = 5, baseDelay = 1000) {
+                let attempt = 0;
+                while (attempt < maxRetries) {
+                    try {
+                        const response = await fetch(url, options);
+                        if (response.ok) {
+                            return await response.json();
+                        } else if (response.status === 429 || response.status >= 500) {
+                            // Throttling or server error, wait and retry
+                            const delay = baseDelay * Math.pow(2, attempt) + Math.random() * 1000;
+                            await new Promise(resolve => setTimeout(resolve, delay));
+                            attempt++;
+                        } else {
+                            // Other client-side error, don't retry
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                    } catch (error) {
+                         // Network error, retry
+                         if (attempt >= maxRetries - 1) throw error;
+                         const delay = baseDelay * Math.pow(2, attempt) + Math.random() * 1000;
+                         await new Promise(resolve => setTimeout(resolve, delay));
+                         attempt++;
+                    }
+                }
+                throw new Error('Max retries reached');
+            }
+
+            // Function to call Gemini API for contributions
+            async function callGeminiContributions(abstractText, targetElementId, button) {
+                const targetElement = document.getElementById(targetElementId);
+                if (!targetElement) return;
+
+                // Show loading state
+                targetElement.classList.remove('hidden');
+                targetElement.innerHTML = `<div class="flex items-center"><span class="spinner"></span><span>Generating key contributions...</span></div>`;
+                button.disabled = true;
+
+                const apiKey = ""; // API key will be provided by the environment
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+                const systemPrompt = "You are an expert academic reviewer. Your job is to read an abstract and concisely list the top 3-4 'Key Contributions' or 'Main Findings' as bullet points. Be specific and scientific, but avoid overly technical jargon. Start directly with the bullet points.";
+                const userQuery = `List the Key Contributions of this abstract:\n\n"${abstractText}"`;
+
+                const payload = {
+                    contents: [{ parts: [{ text: userQuery }] }],
+                    systemInstruction: {
+                        parts: [{ text: systemPrompt }]
+                    },
+                    generationConfig: {
+                        temperature: 0.4,
+                        topP: 0.95,
+                        topK: 40,
+                    }
+                };
+
+                try {
+                    const result = await fetchWithBackoff(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const candidate = result.candidates?.[0];
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        let text = candidate.content.parts[0].text;
+                        // Simple formatting for bullet points
+                        text = text.replace(/•/g, '<ul><li>')
+                                   .replace(/\*/g, '<ul><li>')
+                                   .replace(/\n/g, '</li><li>')
+                                   .replace(/<li>$/, '') + '</li></ul>';
+                        text = text.replace(/<ul><li><\/li>/g, '<ul>')
+                                   .replace(/<\/li><\/ul>/g, '</ul>');
+                        
+                        targetElement.innerHTML = text;
+                        targetElement.classList.add('gemini-output'); // Add the nice styling
+                    } else {
+                        throw new Error('Invalid response from API.');
+                    }
+
+                } catch (error) {
+                    console.error('Gemini API call failed:', error);
+                    targetElement.innerHTML = `<p class="text-red-600">Sorry, I couldn't generate the contributions at this time.</p>`;
+                } finally {
+                    button.disabled = false;
+                }
+            }
+
+            // Add event listeners to all Gemini contributions buttons
+            document.querySelectorAll('.gemini-explain-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const abstract = button.dataset.abstract;
+                    const targetId = button.dataset.target;
+                    
+                    // Toggle visibility if already generated
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement && targetElement.innerHTML !== '' && !targetElement.querySelector('.spinner')) {
+                        targetElement.classList.toggle('hidden');
+                    } else {
+                        callGeminiContributions(abstract, targetId, button);
+                    }
+                });
+            });
+
+            // --- AI Chatbot Logic ---
+            const chatWidget = document.getElementById('chat-widget');
+            const chatToggleBtn = document.getElementById('chat-toggle-btn');
+            const chatCloseBtn = document.getElementById('chat-close-btn');
+            const chatForm = document.getElementById('chat-form');
+            const chatInput = document.getElementById('chat-input');
+            const chatSendBtn = document.getElementById('chat-send-btn');
+            const chatMessages = document.getElementById('chat-messages');
+
+            chatToggleBtn.addEventListener('click', () => {
+                chatWidget.classList.toggle('visible');
+            });
+            
+            chatCloseBtn.addEventListener('click', () => {
+                chatWidget.classList.remove('visible');
+            });
+
+            chatForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const userQuery = chatInput.value.trim();
+                if (userQuery) {
+                    addMessageToChat(userQuery, 'user');
+                    chatInput.value = '';
+                    chatSendBtn.disabled = true;
+                    callGeminiChat(userQuery);
+                }
+            });
+
+            function addMessageToChat(text, sender, isLoading = false) {
+                const msgDiv = document.createElement('div');
+                msgDiv.classList.add('chat-message', sender);
+                
+                if (isLoading) {
+                    msgDiv.classList.add('loading');
+                    msgDiv.innerHTML = `<span class="spinner"></span><span>...</span>`;
+                    msgDiv.id = 'loading-bubble';
+                } else {
+                    // Sanitize text before inserting
+                    msgDiv.textContent = text;
+                }
+                
+                chatMessages.appendChild(msgDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+            }
+
+            async function callGeminiChat(userQuery) {
+                addMessageToChat('', 'bot', true); // Show loading bubble
+                chatSendBtn.disabled = true;
+
+                const apiKey = ""; // API key will be provided by the environment
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+                const systemPrompt = `You are an AI assistant for Parisa Kavianpour's academic website. Your name is 'AI Research Assistant'. You MUST answer questions based *only* on the provided context. Be professional, concise, and helpful. If the answer is not in the context, say 'I do not have that information in my knowledge base.' Do not make up information.
+                
+                CONTEXT:
+                ---
+                ${websiteContext}
+                ---
+                `;
+
+                // Add user query to history
+                chatHistory.push({ role: 'user', parts: [{ text: userQuery }] });
+
+                const payload = {
+                    contents: chatHistory, // Send the whole history
+                    systemInstruction: {
+                        parts: [{ text: systemPrompt }]
+                    },
+                    generationConfig: {
+                        temperature: 0.5,
+                        topP: 0.95,
+                        topK: 40,
+                    }
+                };
+
+                try {
+                    const result = await fetchWithBackoff(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const candidate = result.candidates?.[0];
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        const botResponse = candidate.content.parts[0].text;
+                        
+                        // Add bot response to history
+                        chatHistory.push({ role: 'model', parts: [{ text: botResponse }] });
+
+                        // Remove loading bubble and add real response
+                        const loadingBubble = document.getElementById('loading-bubble');
+                        if (loadingBubble) loadingBubble.remove();
+                        addMessageToChat(botResponse, 'bot');
+
+                    } else {
+                        throw new Error('Invalid response from API.');
+                    }
+
+                } catch (error) {
+                    console.error('Gemini Chat API call failed:', error);
+                    const loadingBubble = document.getElementById('loading-bubble');
+                    if (loadingBubble) loadingBubble.remove();
+                    addMessageToChat("Sorry, I'm having trouble connecting right now.", 'bot');
+                } finally {
+                    chatSendBtn.disabled = false;
+                    chatInput.focus();
+                }
+            }
+
+        });
+    </script>
+
+</body>
+</html>
