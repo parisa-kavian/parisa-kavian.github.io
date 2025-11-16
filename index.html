@@ -68,11 +68,14 @@
             animation: fadeIn 0.5s ease-in-out;
         }
         .skill-logo {
-            filter: grayscale(100%) opacity(0.7);
-            transition: filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            /* filter: grayscale(100%) opacity(0.7); */ /* Removed grayscale filter */
+            opacity: 0.85;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
         }
         .skill-logo:hover {
-            filter: grayscale(0%) opacity(1);
+            /* filter: grayscale(0%) opacity(1); */ /* Removed grayscale filter */
+            opacity: 1;
+            transform: scale(1.05);
         }
         /* Style for abstract content */
         .abstract-content {
@@ -275,6 +278,7 @@
                 <a href="#publications" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="publications">Publications</a>
                 <a href="#experience" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="experience">Experience</a>
                 <a href="#teaching" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="teaching">Teaching</a>
+                <a href="#service" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="service">Service</a>
                 <a href="#projects" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="projects">Projects</a>
                 <a href="#education" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="education">Education</a>
                 <a href="#skills" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="skills">Skills</a>
@@ -294,6 +298,7 @@
             <a href="#publications" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="publications">Publications</a>
             <a href="#experience" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="experience">Experience</a>
             <a href="#teaching" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="teaching">Teaching</a>
+            <a href="#service" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="service">Service</a>
             <a href="#projects" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="projects">Projects</a>
             <a href="#education" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="education">Education</a>
             <a href="#skills" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="skills">Skills</a>
@@ -301,7 +306,6 @@
     </header>
 
     <!-- Main Content -->
-    <!-- <main class="container mx-auto p-6 lg:p-12 flex flex-col lg:flex-row gap-12"> -->
     <main>
         
         <!-- === NEW Hero Section (Full-width, Dark) === -->
@@ -325,12 +329,13 @@
                 <h1 class="text-4xl md:text-5xl font-bold text-white mt-4">Parisa Kavianpour</h1>
                 <p class="text-center text-indigo-400 mt-2 text-xl">AI/ML Researcher</p>
 
-                <!-- Social Icons -->
+                <!-- Social Icons (Links Updated) -->
                 <div class="flex justify-center space-x-6 mt-6">
                     <a href="mailto:p.kavianpour08@umail.umz.ac.ir" title="Email" class="text-slate-300 hover:text-indigo-400 text-2xl transition-colors"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.linkedin.com/in/parisa-kavianpour-a8ab1a195/" title="LinkedIn" target="_blank" class="text-slate-300 hover:text-indigo-400 text-2xl transition-colors"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.linkedin.com/in/parisa-kavianpour/" title="LinkedIn" target="_blank" class="text-slate-300 hover:text-indigo-400 text-2xl transition-colors"><i class="fab fa-linkedin"></i></a>
                     <a href="https://github.com/parisa-kavian" title="GitHub" target="_blank" class="text-slate-300 hover:text-indigo-400 text-2xl transition-colors"><i class="fab fa-github"></i></a>
-                    <a href="https://scholar.google.com/citations?user=xR-FY-AAAAAJ&hl=en" title="Google Scholar" target="_blank" class="text-slate-300 hover:text-indigo-400 text-2xl transition-colors"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://scholar.google.com/citations?user=Y5cXz8QAAAAJ&hl=en" title="Google Scholar" target="_blank" class="text-slate-300 hover:text-indigo-400 text-2xl transition-colors"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://www.researchgate.net/profile/Parisa-Kavianpour" title="ResearchGate" target="_blank" class="text-slate-300 hover:text-indigo-400 text-2xl transition-colors"><i class="fab fa-researchgate"></i></a>
                 </div>
             </div>
 
@@ -533,11 +538,26 @@
                 </div>
             </section>
 
-            <!-- Experience Section -->
+            <!-- Experience Section (Reordered) -->
             <section id="experience" class="content-section">
                 <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Experience</h2>
                 <div class="mt-8 space-y-8">
                     
+                    <!-- Item 1: Tarbiat Modares (Moved Up) -->
+                    <div class="relative pl-8">
+                        <div class="absolute left-0 top-1 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-sm"></div>
+                        <p class="text-sm text-gray-500">Feb. 2022 - Present</p>
+                        <h3 class="text-xl font-bold text-gray-900 mt-1">Research Assistant (Part-Time)</h3>
+                        <p class="text-md font-semibold text-indigo-600">Tarbiat Modares University (Advanced Control System Lab)</p>
+                        <!-- Updated Text -->
+                        <ul class="mt-3 list-disc list-outside ml-5 space-y-2 text-gray-700">
+                            <li>Developed advanced graph-based learning models and efficient deep neural networks for reliability assessment in safety-critical systems.</li>
+                            <li>Investigated physics-aware and adversarial learning approaches to build robust AI models under highly incomplete and weakly-labeled industrial data.</li>
+                            <li>This research directly resulted in two Q1 journal publications in `Knowledge-Based Systems` and `Measurement`.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Item 2: Haf Hashtad -->
                     <div class="relative pl-8">
                         <div class="absolute left-0 top-1 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-sm"></div>
                         <p class="text-sm text-gray-500">Sep. 2024 - Sep. 2025</p>
@@ -550,6 +570,7 @@
                         </ul>
                     </div>
 
+                    <!-- Item 3: Hesse Tazegi -->
                     <div class="relative pl-8">
                         <div class="absolute left-0 top-1 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-sm"></div>
                         <p class="text-sm text-gray-500">Jul. 2023 - Sep. 2024</p>
@@ -561,18 +582,7 @@
                         </ul>
                     </div>
 
-                    <div class="relative pl-8">
-                        <div class="absolute left-0 top-1 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-sm"></div>
-                        <p class="text-sm text-gray-500">Feb. 2022 - Present</p>
-                        <h3 class="text-xl font-bold text-gray-900 mt-1">Research Assistant (Part-Time)</h3>
-                        <p class="text-md font-semibold text-indigo-600">Tarbiat Modares University (Advanced Control System Lab)</p>
-                        <ul class="mt-3 list-disc list-outside ml-5 space-y-2 text-gray-700">
-                            <li>Conducting ongoing research in industrial AI, focusing on `Fault Diagnosis`, `Safety & Reliability`.</li>
-                            <li>Applying advanced methods: `Domain Adaptation`, `GNNs`, and `Physics-Informed Machine Learning`.</li>
-                            <li>This research directly resulted in two Q1 journal publications in `Knowledge-Based Systems` and `Measurement`.</li>
-                        </ul>
-                    </div>
-
+                    <!-- Item 4: Mazandaran -->
                     <div class="relative pl-8">
                         <div class="absolute left-0 top-1 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-sm"></div>
                         <p class="text-sm text-gray-500">Sep. 2018 - Feb. 2022</p>
@@ -586,11 +596,11 @@
                 </div>
             </section>
             
-            <!-- NEW: Teaching Section -->
+            <!-- Teaching Section (Updated) -->
             <section id="teaching" class="content-section">
-                <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Teaching</h2>
+                <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Teaching & Workshops</h2>
                 <div class="mt-8 space-y-6">
-                    <p class="text-lg text-gray-700">I am passionate about teaching and mentoring. During my M.Sc., I served as a Teaching Assistant for the following graduate-level courses at the University of Mazandaran.</p>
+                    <p class="text-lg text-gray-700">I am passionate about teaching and mentoring. I have experience as both a graduate Teaching Assistant and as an instructor for student-led workshops.</p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Course 1 -->
@@ -605,7 +615,36 @@
                             <p class="text-indigo-600 font-semibold mt-1">Teaching Assistant (M.Sc. Level)</p>
                             <p class="mt-3 text-gray-600">Guided students through classical and heuristic optimization algorithms (e.g., Genetic Algorithms, PSO). Helped debug and implement algorithms in MATLAB.</p>
                         </div>
+                        <!-- New Workshop 1 -->
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-bold text-gray-900">Introduction to Machine Learning</h3>
+                            <p class="text-indigo-600 font-semibold mt-1">Workshop Instructor (2-Month Course)</p>
+                            <p class="mt-3 text-gray-600">Developed and delivered a 2-month workshop on fundamental ML concepts for the university's scientific association.</p>
+                        </div>
+                        <!-- New Workshop 2 -->
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-bold text-gray-900">Python Programming</h3>
+                            <p class="text-indigo-600 font-semibold mt-1">Workshop Instructor (2-Month Course)</p>
+                            <p class="mt-3 text-gray-600">Led a practical 2-month programming course for students, focusing on Python for data analysis and scientific computing.</p>
+                        </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- NEW: Professional Service Section -->
+            <section id="service" class="content-section">
+                <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Professional Service</h2>
+                <div class="mt-8 bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-gray-900">Scientific Reviewer</h3>
+                    <p class="text-indigo-600 font-semibold mt-1">(2022 – Present)</p>
+                    <p class="mt-4 text-gray-600">Served as a reviewer for several high-impact journals, including:</p>
+                    <ul class="mt-3 list-disc list-outside ml-5 space-y-2 text-gray-700">
+                        <li>Measurement (Elsevier)</li>
+                        <li>Expert Systems with Applications (Elsevier)</li>
+                        <li>Engineering Applications of Artificial Intelligence (Elsevier)</li>
+                        <li>IEEE Transactions on Industrial Electronics</li>
+                        <li>IEEE Transactions on Instrumentation and Measurement</li>
+                    </ul>
                 </div>
             </section>
 
@@ -709,7 +748,7 @@
                 </div>
             </section>
 
-            <!-- Skills Section -->
+            <!-- Skills Section (Icons Updated) -->
             <section id="skills" class="content-section">
                 <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Skills</h2>
                 
@@ -717,52 +756,52 @@
                 <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-8 text-center">
                     <!-- Python -->
                     <div class="flex flex-col items-center justify-center">
-                        <img src="https://cdn.simpleicons.org/python/4F46E5" alt="Python" class="w-16 h-16 skill-logo">
+                        <img src="https://cdn.simpleicons.org/python" alt="Python" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">Python</span>
                     </div>
                     <!-- PyTorch -->
                     <div class="flex flex-col items-center justify-center">
-                        <img src="https://cdn.simpleicons.org/pytorch/4F46E5" alt="PyTorch" class="w-16 h-16 skill-logo">
+                        <img src="https://cdn.simpleicons.org/pytorch" alt="PyTorch" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">PyTorch</span>
                     </div>
                     <!-- TensorFlow -->
                     <div class="flex flex-col items-center justify-center">
-                        <img src="https://cdn.simpleicons.org/tensorflow/4F46E5" alt="TensorFlow" class="w-16 h-16 skill-logo">
+                        <img src="https://cdn.simpleicons.org/tensorflow" alt="TensorFlow" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">TensorFlow</span>
                     </div>
                     <!-- Hugging Face -->
                      <div class="flex flex-col items-center justify-center">
-                        <img src="https://cdn.simpleicons.org/huggingface/4F46E5" alt="Hugging Face" class="w-16 h-16 skill-logo">
+                        <img src="https://cdn.simpleicons.org/huggingface" alt="Hugging Face" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">Hugging Face</span>
                     </div>
                     <!-- Scikit-learn -->
                     <div class="flex flex-col items-center justify-center">
-                        <img src="https://cdn.simpleicons.org/scikitlearn/4F46E5" alt="Scikit-learn" class="w-16 h-16 skill-logo">
+                        <img src="https://cdn.simpleicons.org/scikitlearn" alt="Scikit-learn" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">Scikit-learn</span>
                     </div>
                     <!-- LangChain -->
                     <div class="flex flex-col items-center justify-center">
-                        <img src="https://cdn.simpleicons.org/langchain/4F46E5" alt="LangChain" class="w-16 h-16 skill-logo">
+                        <img src="https://cdn.simpleicons.org/langchain" alt="LangChain" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">LangChain</span>
                     </div>
                     <!-- Docker -->
                     <div class="flex flex-col items-center justify-center">
-                        <img src="https://cdn.simpleicons.org/docker/4F46E5" alt="Docker" class="w-16 h-16 skill-logo">
+                        <img src="https://cdn.simpleicons.org/docker" alt="Docker" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">Docker</span>
                     </div>
                     <!-- SQL -->
                     <div class="flex flex-col items-center justify-center">
-                        <img src="https://cdn.simpleicons.org/mysql/4F46E5" alt="SQL" class="w-16 h-16 skill-logo">
+                        <img src="https://cdn.simpleicons.org/mysql" alt="SQL" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">SQL</span>
                     </div>
                     <!-- Git -->
                     <div class="flex flex-col items-center justify-center">
-                        <img src="https://cdn.simpleicons.org/git/4F46E5" alt="Git" class="w-16 h-16 skill-logo">
+                        <img src="https://cdn.simpleicons.org/git" alt="Git" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">Git</span>
                     </div>
-                    <!-- MATLAB -->
+                    <!-- MATLAB (Fixed) -->
                     <div class="flex flex-col items-center justify-center">
-                        <img src="https://cdn.simpleicons.org/mathworks/4F46E5" alt="MATLAB" class="w-16 h-16 skill-logo">
+                        <img src="https://cdn.simpleicons.org/matlab" alt="MATLAB" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">MATLAB</span>
                     </div>
                 </div>
@@ -870,6 +909,10 @@
 
                     const scholar = hero.querySelector('a[href*="scholar.google.com"]');
                     if (scholar) context += "Google Scholar: " + scholar.href + "\n";
+
+                    // Add ResearchGate to context
+                    const researchgate = hero.querySelector('a[href*="researchgate.net"]');
+                    if (researchgate) context += "ResearchGate: " + researchgate.href + "\n";
                     
                     context += "\n\n";
 
@@ -902,14 +945,19 @@
                     if (company) context += "At: " + company.textContent.trim() + "\n";
                     if (details) context += "Details: " + details.textContent.trim() + "\n\n";
 
+                    // This check is still valid for the updated text
                     if (title && title.textContent.includes('Tarbiat Modares University')) {
                         context += "Specific expertise from this role includes: handling missing or incomplete data, physics-informed machine learning, and domain adaptation.\n\n";
                     }
                  });
  
-                // 5. Teaching (NEW SECTION)
+                // 5. Teaching
                 const teaching = document.getElementById('teaching');
-                if (teaching) context += "Teaching Experience:\n" + teaching.textContent.trim() + "\n\n";
+                if (teaching) context += "Teaching & Workshops:\n" + teaching.textContent.trim() + "\n\n";
+
+                // 5.5. Professional Service (NEW)
+                const service = document.getElementById('service');
+                if (service) context += "Professional Service:\n" + service.textContent.trim() + "\n\n";
 
                 // 6. Projects
                 context += "Projects:\n";
