@@ -4,62 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parisa Kavianpour | AI Researcher</title>
-
 	<meta name="description" content="Personal website of Parisa Kavianpour, AI Researcher specializing in Generative AI, NLP, and Deep Learning. View publications, projects, and research interests.">
-	
-    <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Google Fonts: Lato -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-    
-    <!-- Favicon -->
     <link rel="icon" href="images/favicon.png" type="image/png">
-    
-    <!-- === SEO / OG Tags / Analytics === -->
-    
-    <!-- Meta Tags for SEO -->
     <meta name="author" content="Parisa Kavianpour">
     <meta name="keywords" content="Parisa Kavianpour, AI Researcher, PhD, Generative AI, NLP, Deep Learning, Machine Learning, Earthquake Prediction, Fault Diagnosis">
-
-    <!-- Open Graph (OG) Tags for Social Media Sharing (LinkedIn, Twitter, etc.) -->
     <meta property="og:title" content="Parisa Kavianpour | AI Researcher">
     <meta property="og:description" content="AI Researcher specializing in Generative AI, NLP, and Deep Learning.">
     <meta property="og:type" content="website">
-    <!-- IMPORTANT: Replace this with the final GitHub URL after deployment -->
     <meta property="og:url" content="https://parisa-kavian.github.io/"> 
-    <!-- IMPORTANT: This now points to your profile image -->
     <meta property="og:image" content="https://parisa-kavian.github.io/images/profile.jpg">
-
-    <!-- Google Analytics - Replace G-XXXXXXXXXX with your ID -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
       gtag('config', 'G-XXXXXXXXXX');
     </script>
-    <!-- === END: SEO TAGS === -->
-	
     <style>
-        /* Custom styles */
         body {
             font-family: 'Lato', sans-serif;
-            background-color: #f3f4f6; /* gray-100 */
-            color: #374151; /* gray-700 */
+            background-color: #f3f4f6; 
+            color: #374151; 
         }
-        /* Style for the active navigation link */
         .nav-link.active {
-            background-color: #4f46e5; /* indigo-600 */
+            background-color: #4f46e5; 
             color: white;
         }
-        /* Simple animation for section loading */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
@@ -68,34 +43,29 @@
             animation: fadeIn 0.5s ease-in-out;
         }
         .skill-logo {
-            /* filter: grayscale(100%) opacity(0.7); */ /* Removed grayscale filter */
             opacity: 0.85;
             transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
         }
         .skill-logo:hover {
-            /* filter: grayscale(0%) opacity(1); */ /* Removed grayscale filter */
             opacity: 1;
             transform: scale(1.05);
         }
-        /* Style for abstract content */
         .abstract-content {
             transition: max-height 0.3s ease-out;
             overflow: hidden;
         }
-        /* Styles for Gemini feature (Light Theme) */
         .gemini-output {
-            background-color: #eef2ff; /* indigo-50 */
-            border-left: 4px solid #4f46e5; /* indigo-600 */
+            background-color: #eef2ff; 
+            border-left: 4px solid #4f46e5; 
             padding: 12px 16px;
             border-radius: 4px;
-            color: #3730a3; /* indigo-900 */
+            color: #3730a3; 
         }
         .gemini-output ul {
             list-style-type: disc;
             margin-left: 20px;
             margin-top: 8px;
         }
-        /* Loading spinner */
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
@@ -104,18 +74,16 @@
             width: 16px;
             height: 16px;
             border: 2px solid rgba(0,0,0,.1);
-            border-left-color: #4f46e5; /* indigo-600 */
+            border-left-color: #4f46e5; 
             border-radius: 50%;
             animation: spin 0.6s linear infinite;
             margin-right: 8px;
         }
-
-        /* --- Chatbot Styles (Light Theme) --- */
         #chat-toggle-btn {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background-color: #4f46e5; /* indigo-600 */
+            background-color: #4f46e5; 
             color: white;
             width: 60px;
             height: 60px;
@@ -130,7 +98,7 @@
             transition: all 0.3s ease;
         }
         #chat-toggle-btn:hover {
-            background-color: #4338ca; /* indigo-700 */
+            background-color: #4338ca; 
             transform: scale(1.05);
         }
         #chat-widget {
@@ -152,14 +120,13 @@
             opacity: 0;
             pointer-events: none;
             transition: all 0.3s ease-out;
-            border: 1px solid #e5e7eb; /* gray-200 */
+            border: 1px solid #e5e7eb; 
         }
         #chat-widget.visible {
             transform: scale(1) translateY(0);
             opacity: 1;
             pointer-events: all;
         }
-        /* Mobile responsive chat */
         @media (max-width: 768px) {
             #chat-widget {
                 width: 90%;
@@ -173,9 +140,8 @@
                 right: 1rem;
             }
         }
-
         #chat-header {
-            background-color: #4f46e5; /* indigo-600 */
+            background-color: #4f46e5; 
             color: white;
             padding: 1rem;
             display: flex;
@@ -197,7 +163,7 @@
             flex-grow: 1;
             padding: 1rem;
             overflow-y: auto;
-            background-color: #f9fafb; /* gray-50 */
+            background-color: #f9fafb; 
         }
         .chat-message {
             margin-bottom: 0.75rem;
@@ -207,14 +173,14 @@
             word-wrap: break-word;
         }
         .chat-message.user {
-            background-color: #e0e7ff; /* indigo-100 */
-            color: #3730a3; /* indigo-800 */
+            background-color: #e0e7ff; 
+            color: #3730a3; 
             align-self: flex-end;
             margin-left: auto;
         }
         .chat-message.bot {
-            background-color: #e5e7eb; /* gray-200 */
-            color: #1f2937; /* gray-800 */
+            background-color: #e5e7eb; 
+            color: #1f2937; 
             align-self: flex-start;
             margin-right: auto;
         }
@@ -225,16 +191,15 @@
         .chat-message.bot .spinner {
             border-left-color: #4f46e5;
         }
-
         #chat-form {
             display: flex;
             padding: 0.75rem;
-            border-top: 1px solid #e5e7eb; /* gray-200 */
+            border-top: 1px solid #e5e7eb; 
             background-color: white;
         }
         #chat-input {
             flex-grow: 1;
-            border: 1px solid #d1d5db; /* gray-300 */
+            border: 1px solid #d1d5db; 
             border-radius: 6px;
             padding: 0.5rem 0.75rem;
             font-size: 0.9rem;
@@ -258,21 +223,18 @@
             background-color: #4338ca;
         }
         #chat-send-btn:disabled {
-            background-color: #a5b4fc; /* indigo-300 */
+            background-color: #a5b4fc; 
             cursor: not-allowed;
         }
-
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Header & Navigation -->
     <header class="bg-white/90 backdrop-blur-sm sticky top-0 z-50 shadow-md border-b border-gray-200">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             
             <div class="text-2xl font-bold text-indigo-600">Parisa Kavianpour</div>
             
-            <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center space-x-1 mx-auto">
                 <a href="#home" class="nav-link active py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="home">Home</a>
                 <a href="#publications" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="publications">Publications</a>
@@ -282,9 +244,9 @@
                 <a href="#projects" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="projects">Projects</a>
                 <a href="#education" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="education">Education</a>
                 <a href="#skills" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="skills">Skills</a>
+                <a href="#contact" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="contact">Contact</a>
             </nav>
 
-            <!-- Mobile Menu Button -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
                     <i class="fas fa-bars text-2xl"></i>
@@ -292,7 +254,6 @@
             </div>
         </div>
 
-        <!-- Mobile Navigation -->
         <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t border-gray-200">
             <a href="#home" class="nav-link-mobile active block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="home">Home</a>
             <a href="#publications" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="publications">Publications</a>
@@ -302,34 +263,21 @@
             <a href="#projects" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="projects">Projects</a>
             <a href="#education" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="education">Education</a>
             <a href="#skills" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="skills">Skills</a>
+            <a href="#contact" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="contact">Contact</a>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main>
         
-        <!-- === NEW Hero Section (Full-width, Dark) === -->
-        <!-- 
-            IMPORTANT: Replace 'images/background.jpg' with the path to your background image. 
-            This image should be in your 'images' folder.
-        -->
         <section id="home" class="content-section bg-slate-900 py-20 md:py-32 relative" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center; background-blend-mode: overlay; background-color: rgba(15, 23, 42, 0.8);">
-            <!-- The 'home' ID is kept here for the navigation -->
             
             <div class="container mx-auto px-6 text-center flex flex-col items-center">
                 
-                <!-- 
-                    Profile Image: 
-                    - Changed to 'images/profile.jpg'
-                    - Changed from 'rounded-full w-40 h-40' to 'rounded-lg w-48'
-                -->
                 <img src="images/profile.jpg" alt="Parisa Kavianpour" class="w-48 h-auto rounded-lg mx-auto border-4 border-indigo-500 mb-4 shadow-lg" onerror="this.src='https://placehold.co/400x500/E0E7FF/4F46E5?text=PK'; this.onerror=null;">
                 
-                <!-- Name & Title -->
                 <h1 class="text-4xl md:text-5xl font-bold text-white mt-4">Parisa Kavianpour</h1>
                 <p class="text-center text-indigo-400 mt-2 text-xl">AI/ML Researcher</p>
 
-                <!-- Social Icons (Links Updated) -->
                 <div class="flex justify-center space-x-6 mt-6">
                     <a href="mailto:p.kavianpour08@umail.umz.ac.ir" title="Email" class="text-slate-300 hover:text-indigo-400 text-2xl transition-colors"><i class="fas fa-envelope"></i></a>
                     <a href="https://www.linkedin.com/in/parisa-kavianpour/" title="LinkedIn" target="_blank" class="text-slate-300 hover:text-indigo-400 text-2xl transition-colors"><i class="fab fa-linkedin"></i></a>
@@ -339,12 +287,10 @@
                 </div>
             </div>
 
-            <!-- "About Me" text moved inside the dark Hero section -->
             <div class="container mx-auto px-6 mt-16">
                  <h2 class="text-3xl font-bold text-white border-b-4 border-indigo-500 pb-2 inline-block">About Me</h2>
                  
-                 <!-- NEW "About Me" Text -->
-                 <div class="text-lg space-y-4 text-slate-300 leading-relaxed mt-8 max-w-3xl mx-auto">
+                 <div class="text-lg space-y-4 text-slate-300 leading-relaxed mt-8 max-w-3xl mx-auto text-justify">
                     <p>
                         My name is Parisa Kavianpour, and I am an Applied AI researcher interested in how intelligent systems can learn from complex, imperfect real-world data. I first encountered this challenge during my M.Sc. in Earthquake Engineering, where I worked with high-dimensional, chaotic seismic time-series. That experience, building deep learning models to discover hidden structure in noisy data, quickly became the foundation of my interest in AI research.
                     </p>
@@ -365,13 +311,9 @@
                 </div>
             </div>
         </section>
-        <!-- === END Hero Section === -->
 
-
-        <!-- Right Content Area (now a single column) -->
         <div class="container mx-auto p-6 lg:p-12 space-y-16">
             
-            <!-- NEW: Stats Section (Light Theme) -->
             <section id="stats" class="content-section">
                  <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Academic Stats</h2>
                  <div class="mt-8 bg-white rounded-lg shadow-lg p-6">
@@ -385,7 +327,6 @@
                             <p class="text-sm uppercase text-gray-500 mt-2">Citations</p>
                         </div>
                         <div class="p-4 w-full md:w-1/3 border-t md:border-t-0 border-gray-200">
-                            <!-- h-index Updated to 4 -->
                             <p class="text-5xl font-bold text-indigo-600">4</p>
                             <p class="text-sm uppercase text-gray-500 mt-2">h-index</p>
                         </div>
@@ -394,12 +335,10 @@
                  </div>
             </section>
 
-            <!-- Publications Section -->
             <section id="publications" class="content-section">
                 <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Publications</h2>
                 
                 <div class="space-y-6 mt-8">
-                    <!-- Publication 1 -->
                     <div class="bg-white p-5 rounded-lg shadow">
                         <p class="font-bold text-lg text-gray-900">A CNN-BILSTM Model with Attention Mechanism for Earthquake Prediction</p>
                         <p class="text-sm text-gray-600 mt-1"><span class="font-semibold text-gray-800">Kavianpour, P.</span>, Kavianpour, M., Jahani, E., & Ramezani, A. (2023).</p>
@@ -416,12 +355,9 @@
                         <div class="abstract-content hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
                             <p>This paper introduces a hybrid deep learning model combining a Convolutional Neural Network (CNN) with a Bidirectional Long Short-Term Memory (BiLSTM) network, enhanced by an attention mechanism, for earthquake prediction. The model leverages the CNN to extract spatial features from seismic data and the BiLSTM to capture temporal dependencies, while the attention mechanism focuses on the most informative parts of the time series. Experimental results show superior performance in predicting seismic events compared to other baseline models.</p>
                         </div>
-                        <!-- New Gemini Output Div -->
                         <div id="gemini-pub-1" class="gemini-output hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
-                            <!-- Gemini response will be injected here -->
                         </div>
                     </div>
-                    <!-- Publication 2 -->
                     <div class="bg-white p-5 rounded-lg shadow">
                         <p class="font-bold text-lg text-gray-900">Knowledge Distillation and Enhanced Subdomain Adaptation Using Graph Convolutional Network for Resource-Constrained Fault Diagnosis</p>
                         <p class="text-sm text-gray-600 mt-1">Kavianpour, M., <span class="font-semibold text-gray-800">Kavianpour, P.</span>, Ramezani, A., & Beheshti, M. (2025).</p>
@@ -436,7 +372,6 @@
                             </button>
                         </div>
                         <div class="abstract-content hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
-                            <!-- IMPORTANT: You must place 'Knowledgebasedsystems2025.png' inside an 'images' folder -->
                             <img src="images/Knowledgebasedsystems2025.png" 
                                  alt="Proposed Method for Knowledge Distillation" 
                                  class="rounded-lg w-full max-w-xl mx-auto my-3 border border-gray-300"
@@ -444,12 +379,9 @@
 
                             <p>Bearing fault diagnosis under varying working conditions faces challenges, including lack of labeled data, distribution discrepancies, and resource constraints. To address these issues, we propose a progressive knowledge distillation framework that transfers knowledge from a complex teacher model, utilizing a Graph Convolutional Network (GCN) with Autoregressive moving average (ARMA) filters, to a compact and efficient student model. To mitigate distribution discrepancies and labeling uncertainty, we introduce Enhanced Local Maximum Mean Square Discrepancy (ELMMSD), which leverages mean and variance statistics in the Reproducing Kernel Hilbert Space (RKHS) and incorporates a priori probability distributions between labels. This approach increases the distance between clustering centers, bridges subdomain gaps, and enhances subdomain alignment reliability. Experimental results on benchmark datasets (CWRU and JNU) demonstrate that the proposed method achieves superior diagnostic accuracy while significantly reducing computational costs. Comprehensive ablation studies validate the effectiveness of each component, highlighting the robustness and adaptability of the approach across diverse working conditions.</p>
                         </div>
-                        <!-- New Gemini Output Div -->
                         <div id="gemini-pub-2" class="gemini-output hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
-                            <!-- Gemini response will be injected here -->
                         </div>
                     </div>
-                    <!-- Publication 3 -->
                     <div class="bg-white p-5 rounded-lg shadow">
                         <p class="font-bold text-lg text-gray-900">A Partial-Imbalance Robust Domain Adaptation Framework for Bearing Fault Diagnosis using Physics-Informed Deep Learning</p>
                         <p class="text-sm text-gray-600 mt-1">Kavianpour, M., & <span class="font-semibold text-gray-800">Kavianpour, P.</span>, Ramezani, A. (2025).</p>
@@ -464,7 +396,6 @@
                             </button>
                         </div>
                         <div class="abstract-content hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
-                            <!-- IMPORTANT: You must place 'Measurement2025.png' inside an 'images' folder -->
                             <img src="images/Measurement2025.png" 
                                  alt="Proposed Method for Physics-Informed Deep Learning" 
                                  class="rounded-lg w-full max-w-xl mx-auto my-3 border border-gray-300"
@@ -472,12 +403,9 @@
                             
                             <p>Real-world bearing fault diagnosis faces challenges due to lack of access to labeled data and missing or incomplete samples for certain faulty classes, requiring generated data and methods to mitigate imbalanced class distributions and partial-set problems. To address these challenges, we propose a novel physics-informed deep learning framework using a physics-informed synthetic data generation method with an augmented weighted hybrid domain adaptation approach that combines adversarial training with a novel Multi-Kernel Maximum Mean Squared Discrepancy (MK-MMSD) metric. Unlike traditional Domain adaptation method, MK MMSD considers both the mean and variance of data distributions to effectively bridge the domain gap between synthetic and real unlabeled data. Furthermore, we propose a self-adaptive multi-weight block to address the partial-set problem and a novel re-balanced feature Mixup (RF-Mixup) technique to mitigate imbalanced class distributions. Experimental results on the CWRU and JNU datasets demonstrate the effectiveness of our approach in overcoming these real-world challenges in bearing fault diagnosis.</p>
                         </div>
-                        <!-- New Gemini Output Div -->
                         <div id="gemini-pub-3" class="gemini-output hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
-                            <!-- Gemini response will be injected here -->
                         </div>
                     </div>
-                    <!-- Publication 4 -->
                     <div class="bg-white p-5 rounded-lg shadow">
                         <p class="font-bold text-lg text-gray-900">Deep Multi-scale Dilated Convolution Neural Network with Attention Mechanism: A Novel Method for Earthquake Magnitude Classification</p>
                         <p class="text-sm text-gray-600 mt-1"><span class="font-semibold text-gray-800">Kavianpour, P.</span>, Kavianpour, M., & Ramezani, A. (2022).</p>
@@ -494,12 +422,9 @@
                         <div class="abstract-content hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
                             <p>This conference paper presents a deep learning model for classifying earthquake magnitudes. We utilize multi-scale dilated convolutions to capture features at different temporal resolutions from seismic waveforms. An attention mechanism is incorporated to weigh the importance of different time steps, leading to improved classification accuracy.</p>
                         </div>
-                        <!-- New Gemini Output Div -->
                         <div id="gemini-pub-4" class="gemini-output hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
-                            <!-- Gemini response will be injected here -->
                         </div>
                     </div>
-                    <!-- Publication 5 -->
                     <div class="bg-white p-5 rounded-lg shadow">
                         <p class="font-bold text-lg text-gray-900">Earthquake Magnitude Prediction using Spatio-temporal Features Learning Based on a Hybrid CNN-BILSTM Model</p>
                         <p class="text-sm text-gray-600 mt-1"><span class="font-semibold text-gray-800">Kavianpour, P.</span>, Kavianpour, M., Jahani, E., & Ramezani, A. (2021).</p>
@@ -512,12 +437,9 @@
                                 ✨ Key Contributions
                             </button>
                         </div>
-                         <!-- New Gemini Output Div -->
                         <div id="gemini-pub-5" class="gemini-output hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
-                            <!-- Gemini response will be injected here -->
                         </div>
                     </div>
-                    <!-- Publication 6 -->
                     <div class="bg-white p-5 rounded-lg shadow">
                         <p class="font-bold text-lg text-gray-900">An Intelligent Gearbox Fault Diagnosis under Different Operating Conditions using Adversarial Domain Adaptation</p>
                         <p class="text-sm text-gray-600 mt-1">Kavianpour, M., Ghorvei, M., <span class="font-semibold text-gray-800">Kavianpour, P.</span>, Ramezani, A., & Beheshti, M. T. H. (2022).</p>
@@ -530,26 +452,21 @@
                                 ✨ Key Contributions
                             </button>
                         </div>
-                         <!-- New Gemini Output Div -->
                         <div id="gemini-pub-6" class="gemini-output hidden mt-4 pt-4 border-t border-gray-200 text-gray-600 text-sm leading-relaxed">
-                            <!-- Gemini response will be injected here -->
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Experience Section (Reordered) -->
             <section id="experience" class="content-section">
                 <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Experience</h2>
                 <div class="mt-8 space-y-8">
                     
-                    <!-- Item 1: Tarbiat Modares (Moved Up) -->
                     <div class="relative pl-8">
                         <div class="absolute left-0 top-1 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-sm"></div>
                         <p class="text-sm text-gray-500">Feb. 2022 - Present</p>
                         <h3 class="text-xl font-bold text-gray-900 mt-1">Research Assistant (Part-Time)</h3>
                         <p class="text-md font-semibold text-indigo-600">Tarbiat Modares University (Advanced Control System Lab)</p>
-                        <!-- Updated Text -->
                         <ul class="mt-3 list-disc list-outside ml-5 space-y-2 text-gray-700">
                             <li>Developed advanced graph-based learning models and efficient deep neural networks for reliability assessment in safety-critical systems.</li>
                             <li>Investigated physics-aware and adversarial learning approaches to build robust AI models under highly incomplete and weakly-labeled industrial data.</li>
@@ -557,7 +474,6 @@
                         </ul>
                     </div>
 
-                    <!-- Item 2: Haf Hashtad -->
                     <div class="relative pl-8">
                         <div class="absolute left-0 top-1 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-sm"></div>
                         <p class="text-sm text-gray-500">Sep. 2024 - Sep. 2025</p>
@@ -570,7 +486,6 @@
                         </ul>
                     </div>
 
-                    <!-- Item 3: Hesse Tazegi -->
                     <div class="relative pl-8">
                         <div class="absolute left-0 top-1 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-sm"></div>
                         <p class="text-sm text-gray-500">Jul. 2023 - Sep. 2024</p>
@@ -582,7 +497,6 @@
                         </ul>
                     </div>
 
-                    <!-- Item 4: Mazandaran -->
                     <div class="relative pl-8">
                         <div class="absolute left-0 top-1 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-sm"></div>
                         <p class="text-sm text-gray-500">Sep. 2018 - Feb. 2022</p>
@@ -596,32 +510,27 @@
                 </div>
             </section>
             
-            <!-- Teaching Section (Updated) -->
             <section id="teaching" class="content-section">
                 <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Teaching & Workshops</h2>
                 <div class="mt-8 space-y-6">
                     <p class="text-lg text-gray-700">I am passionate about teaching and mentoring. I have experience as both a graduate Teaching Assistant and as an instructor for student-led workshops.</p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Course 1 -->
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <h3 class="text-xl font-bold text-gray-900">Soft Computing</h3>
                             <p class="text-indigo-600 font-semibold mt-1">Teaching Assistant (M.Sc. Level)</p>
                             <p class="mt-3 text-gray-600">Assisted graduate students with concepts in fuzzy logic, neural networks, and evolutionary computation. Graded assignments and led practical lab sessions.</p>
                         </div>
-                        <!-- Course 2 -->
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <h3 class="text-xl font-bold text-gray-900">Optimization</h3>
                             <p class="text-indigo-600 font-semibold mt-1">Teaching Assistant (M.Sc. Level)</p>
                             <p class="mt-3 text-gray-600">Guided students through classical and heuristic optimization algorithms (e.g., Genetic Algorithms, PSO). Helped debug and implement algorithms in MATLAB.</p>
                         </div>
-                        <!-- New Workshop 1 -->
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <h3 class="text-xl font-bold text-gray-900">Introduction to Machine Learning</h3>
                             <p class="text-indigo-600 font-semibold mt-1">Workshop Instructor (2-Month Course)</p>
                             <p class="mt-3 text-gray-600">Developed and delivered a 2-month workshop on fundamental ML concepts for the university's scientific association.</p>
                         </div>
-                        <!-- New Workshop 2 -->
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <h3 class="text-xl font-bold text-gray-900">Python Programming</h3>
                             <p class="text-indigo-600 font-semibold mt-1">Workshop Instructor (2-Month Course)</p>
@@ -631,7 +540,6 @@
                 </div>
             </section>
 
-            <!-- NEW: Professional Service Section -->
             <section id="service" class="content-section">
                 <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Professional Service</h2>
                 <div class="mt-8 bg-white p-6 rounded-lg shadow-lg">
@@ -648,7 +556,6 @@
                 </div>
             </section>
 
-            <!-- Projects Section -->
             <section id="projects" class="content-section">
                 <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Selected Projects</h2>
                 <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -656,7 +563,7 @@
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
                         <div class="p-6 flex-grow">
                             <h3 class="text-2xl font-bold text-gray-900">MediChat-RAG: Medical Conversational AI</h3>
-                            <p class="mt-3 text-gray-600">Developed a stateful medical chatbot using LangChain and GPT-40-mini. Implemented a Retrieval-Augmented Generation (RAG) pipeline to query a medical knowledge base, enabling the bot to provide context-aware and accurate responses.</p>
+                            <p class="mt-3 text-gray-600 text-justify">Developed a stateful medical chatbot using LangChain and GPT-40-mini. Implemented a Retrieval-Augmented Generation (RAG) pipeline to query a medical knowledge base, enabling the bot to provide context-aware and accurate responses.</p>
                             <div class="mt-4 flex flex-wrap gap-2">
                                 <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">RAG</span>
                                 <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">LangChain</span>
@@ -673,7 +580,7 @@
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
                         <div class="p-6 flex-grow">
                             <h3 class="text-2xl font-bold text-gray-900">Xsum-FlanT5: Efficient Summarization</h3>
-                            <p class="mt-3 text-gray-600">Fine-tuned a FLAN-T5 model for high-performance news summarization on the XSum dataset. Utilized parameter-efficient fine-tuning (PEFT) techniques (LoRA) to dramatically reduce computational costs while achieving competitive scores.</p>
+                            <p class="mt-3 text-gray-600 text-justify">Fine-tuned a FLAN-T5 model for high-performance news summarization on the XSum dataset. Utilized parameter-efficient fine-tuning (PEFT) techniques (LoRA) to dramatically reduce computational costs while achieving competitive scores.</p>
                             <div class="mt-4 flex flex-wrap gap-2">
                                 <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Fine-Tuning</span>
                                 <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">FLAN-T5</span>
@@ -690,7 +597,7 @@
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
                         <div class="p-6 flex-grow">
                             <h3 class="text-2xl font-bold text-gray-900">AI-Plan-Generator: Personalized Agent</h3>
-                            <p class="mt-3 text-gray-600">Built an autonomous agent using LangChain and OpenAI API. The agent intelligently processes user goals (e.g., "lose weight") to generate customized, actionable weekly workout routines and meal plans.</p>
+                            <p class="mt-3 text-gray-600 text-justify">Built an autonomous agent using LangChain and OpenAI API. The agent intelligently processes user goals (e.g., "lose weight") to generate customized, actionable weekly workout routines and meal plans.</p>
                             <div class="mt-4 flex flex-wrap gap-2">
                                 <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">LangChain</span>
                                 <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Agent</span>
@@ -707,7 +614,7 @@
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
                         <div class="p-6 flex-grow">
                             <h3 class="text-2xl font-bold text-gray-900">Named-Entity-Recognition (NER)</h3>
-                            <p class="mt-3 text-gray-600">Developed and trained a custom NER model to identify and extract specific entities (e.g., locations, organizations, technical terms) from unstructured text, a core task in advanced information retrieval and NLP pipelines.</p>
+                            <p class="mt-3 text-gray-600 text-justify">Developed and trained a custom NER model to identify and extract specific entities (e.g., locations, organizations, technical terms) from unstructured text, a core task in advanced information retrieval and NLP pipelines.</p>
                             <div class="mt-4 flex flex-wrap gap-2">
                                 <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">NER</span>
                                 <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">NLP</span>
@@ -724,7 +631,6 @@
                 </div>
             </section>
 
-            <!-- Education Section -->
             <section id="education" class="content-section">
                 <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Education</h2>
                 <div class="mt-8 space-y-6">
@@ -748,58 +654,47 @@
                 </div>
             </section>
 
-            <!-- Skills Section (Icons Updated) -->
             <section id="skills" class="content-section">
                 <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Skills</h2>
                 
                 <h3 class="text-2xl font-bold text-gray-900 mt-10 mb-6">Key Technologies & Frameworks</h3>
                 <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-8 text-center">
-                    <!-- Python -->
                     <div class="flex flex-col items-center justify-center">
                         <img src="https://cdn.simpleicons.org/python" alt="Python" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">Python</span>
                     </div>
-                    <!-- PyTorch -->
                     <div class="flex flex-col items-center justify-center">
                         <img src="https://cdn.simpleicons.org/pytorch" alt="PyTorch" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">PyTorch</span>
                     </div>
-                    <!-- TensorFlow -->
                     <div class="flex flex-col items-center justify-center">
                         <img src="https://cdn.simpleicons.org/tensorflow" alt="TensorFlow" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">TensorFlow</span>
                     </div>
-                    <!-- Hugging Face -->
                      <div class="flex flex-col items-center justify-center">
                         <img src="https://cdn.simpleicons.org/huggingface" alt="Hugging Face" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">Hugging Face</span>
                     </div>
-                    <!-- Scikit-learn -->
                     <div class="flex flex-col items-center justify-center">
                         <img src="https://cdn.simpleicons.org/scikitlearn" alt="Scikit-learn" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">Scikit-learn</span>
                     </div>
-                    <!-- LangChain -->
                     <div class="flex flex-col items-center justify-center">
                         <img src="https://cdn.simpleicons.org/langchain" alt="LangChain" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">LangChain</span>
                     </div>
-                    <!-- Docker -->
                     <div class="flex flex-col items-center justify-center">
                         <img src="https://cdn.simpleicons.org/docker" alt="Docker" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">Docker</span>
                     </div>
-                    <!-- SQL -->
                     <div class="flex flex-col items-center justify-center">
                         <img src="https://cdn.simpleicons.org/mysql" alt="SQL" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">SQL</span>
                     </div>
-                    <!-- Git -->
                     <div class="flex flex-col items-center justify-center">
                         <img src="https://cdn.simpleicons.org/git" alt="Git" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">Git</span>
                     </div>
-                    <!-- MATLAB (Fixed) -->
                     <div class="flex flex-col items-center justify-center">
                         <img src="https://cdn.simpleicons.org/matlab" alt="MATLAB" class="w-16 h-16 skill-logo">
                         <span class="mt-3 font-semibold text-gray-800">MATLAB</span>
@@ -836,17 +731,55 @@
                 </div>
             </section>
 
+            <section id="contact" class="content-section">
+                <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Contact Me</h2>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div>
+                        <p class="text-lg text-gray-700 mb-6">
+                            I am always open to discussing new research ideas, collaborations, or opportunities. 
+                            Feel free to reach out via email or connect with me on social media.
+                        </p>
+                        <div class="flex justify-start space-x-6 mt-6 mb-8">
+                            <a href="mailto:p.kavianpour08@umail.umz.ac.ir" title="Email" class="text-gray-600 hover:text-indigo-600 text-3xl transition-colors"><i class="fas fa-envelope"></i></a>
+                            <a href="https://www.linkedin.com/in/parisa-kavianpour/" title="LinkedIn" target="_blank" class="text-gray-600 hover:text-indigo-600 text-3xl transition-colors"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/parisa-kavian" title="GitHub" target="_blank" class="text-gray-600 hover:text-indigo-600 text-3xl transition-colors"><i class="fab fa-github"></i></a>
+                            <a href="https://scholar.google.com/citations?user=Y5cXz8QAAAAJ&hl=en" title="Google Scholar" target="_blank" class="text-gray-600 hover:text-indigo-600 text-3xl transition-colors"><i class="fas fa-graduation-cap"></i></a>
+                            <a href="https://www.researchgate.net/profile/Parisa-Kavianpour" title="ResearchGate" target="_blank" class="text-gray-600 hover:text-indigo-600 text-3xl transition-colors"><i class="fab fa-researchgate"></i></a>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <form action="https://formspree.io/f/YOUR_UNIQUE_ID" method="POST">
+                            <div class="mb-4">
+                                <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Name</label>
+                                <input type="text" id="name" name="name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" name="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Message</label>
+                                <textarea id="message" name="message" rows="5" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-md hover:bg-indigo-700 transition-colors">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
         </div>
     </main>
     
-    <!-- AI Chatbot -->
-    <button id="chat-toggle-btn" title="AI Research Assistant">
+    <button id="chat-toggle-btn" title="AI Chatbot">
         <i class="fas fa-robot"></i>
     </button>
 
     <div id="chat-widget" class="">
         <div id="chat-header">
-            <!-- NEW Chatbot Title -->
             <h3>AI Chatbot</h3>
             <button id="chat-close-btn" title="Close chat">&times;</button>
         </div>
@@ -862,39 +795,22 @@
             </button>
         </form>
     </div>
-    <!-- End AI Chatbot -->
 
     <footer class="text-center py-8 text-sm text-gray-500 border-t border-gray-200 mt-12 bg-white">
         <p>&copy; 2025 Parisa Kavianpour. All rights reserved.</p>
-        
     </footer>
 
 
     <script>
-        // ---
-        // --- بخش بسیار مهم: کلید API ---
-        // ---
-        // --- کلید API شما در خط زیر قرار داده شده است.
-        // ---
-        const GEMINI_API_KEY = "AIzaSyDUWLEviPg9Jt4bzy7YelDfur0hVkzxg7k"; // <-- کلید شما با موفقیت قرار گرفت
-        // ---
-        // ---
-        // ---
-
+        const GEMINI_API_KEY = "AIzaSyDUWLEviPg9Jt4bzy7YelDfur0hVkzxg7k"; 
 
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Global state for chatbot ---
             let chatHistory = [];
             let websiteContext = '';
 
-            // --- Function to gather all text content from the page ---
             function gatherWebsiteContext() {
                 let context = "";
                 
-                // ---
-                // --- FIX 1 (Revised): Add Contact Info from Sidebar ---
-                // ---
-                // Read from the new Hero section instead of the deleted <aside>
                 const hero = document.getElementById('home'); 
                 if (hero) {
                     context += "Parisa's Contact Information:\n";
@@ -910,23 +826,18 @@
                     const scholar = hero.querySelector('a[href*="scholar.google.com"]');
                     if (scholar) context += "Google Scholar: " + scholar.href + "\n";
 
-                    // Add ResearchGate to context
                     const researchgate = hero.querySelector('a[href*="researchgate.net"]');
                     if (researchgate) context += "ResearchGate: " + researchgate.href + "\n";
                     
                     context += "\n\n";
 
-                    // 1. About Me (Now read from Hero)
                     const aboutDiv = hero.querySelector('.text-lg.space-y-4');
                     if (aboutDiv) context += "About Parisa Kavianpour:\n" + aboutDiv.textContent.trim() + "\n\n";
                 }
 
-
-                // 2. Stats
                 const stats = document.getElementById('stats');
                 if (stats) context += "Academic Stats:\n" + stats.textContent.trim() + "\n\n";
 
-                // 3. Publications
                 context += "Publications:\n";
                 document.querySelectorAll('#publications .bg-white.shadow').forEach(pub => {
                     const title = pub.querySelector('.font-bold.text-lg');
@@ -935,7 +846,6 @@
                     if (abstract) context += "Abstract: " + abstract.dataset.abstract.trim() + "\n\n";
                 });
 
-                // 4. Experience
                 context += "Experience:\n";
                  document.querySelectorAll('#experience .relative.pl-8').forEach(exp => {
                     const title = exp.querySelector('h3');
@@ -945,21 +855,17 @@
                     if (company) context += "At: " + company.textContent.trim() + "\n";
                     if (details) context += "Details: " + details.textContent.trim() + "\n\n";
 
-                    // This check is still valid for the updated text
                     if (title && title.textContent.includes('Tarbiat Modares University')) {
                         context += "Specific expertise from this role includes: handling missing or incomplete data, physics-informed machine learning, and domain adaptation.\n\n";
                     }
                  });
  
-                // 5. Teaching
                 const teaching = document.getElementById('teaching');
                 if (teaching) context += "Teaching & Workshops:\n" + teaching.textContent.trim() + "\n\n";
 
-                // 5.5. Professional Service (NEW)
                 const service = document.getElementById('service');
                 if (service) context += "Professional Service:\n" + service.textContent.trim() + "\n\n";
 
-                // 6. Projects
                 context += "Projects:\n";
                  document.querySelectorAll('#projects .bg-white.shadow-lg').forEach(proj => {
                     const title = proj.querySelector('h3');
@@ -968,7 +874,6 @@
                     if (desc) context += "Description: " + desc.textContent.trim() + "\n\n";
                 });
 
-                // 7. Skills
                 context += "Skills:\n";
                 document.querySelectorAll('#skills .font-semibold, #skills .font-medium').forEach(skill => {
                     context += skill.textContent.trim() + ", ";
@@ -978,56 +883,40 @@
                 return context;
             }
 
-            // --- Initialize website context ---
             websiteContext = gatherWebsiteContext();
-            // console.log("Website Context:", websiteContext); // For debugging
 
-            // --- Navigation Logic for Scrolling ---
             const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
             const mobileMenu = document.getElementById('mobile-menu');
 
-            // ---
-            // --- FIX FOR NAVIGATION MENU ---
-            // ---
-            // Function to handle active link highlighting
             function updateActiveLink() {
-                let currentSectionId = 'home'; // Default to home
+                let currentSectionId = 'home'; 
                 const sections = document.querySelectorAll('.content-section');
-                const offset = 150; // Offset from the top of the viewport in pixels
+                const offset = 150; 
 
-                // Find the section that is currently most visible
                 sections.forEach(section => {
                     const rect = section.getBoundingClientRect();
-                    // This finds the section that is currently at the top of the view
                     if (rect.top <= offset && rect.bottom >= offset) {
                         currentSectionId = section.id;
                     }
                 });
 
-                // Fallback: if scrolled to the very top, set to home
                 if (window.scrollY < 100) {
                     currentSectionId = 'home';
                 }
                 
-                // Fallback: if scrolled to the very bottom, set to the last section
-                // Check if we are near the bottom of the page
-                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 20) { // 20px buffer
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 20) { 
                      if (sections.length > 0) {
-                        // Find the last section in the document flow
                         currentSectionId = sections[sections.length - 1].id;
                      }
                 }
 
-                // Update active class for all nav links
                 document.querySelectorAll('.nav-link, .nav-link-mobile').forEach(navLink => {
                     const navHref = navLink.getAttribute('href');
-                    if (!navHref) return; // Skip if href is missing
+                    if (!navHref) return; 
                     
-                    // Check if the link's href matches the current section's ID
                     const isTarget = navHref === `#${currentSectionId}`;
                     navLink.classList.toggle('active', isTarget);
                     
-                    // Specific styling for light theme active link
                     if (isTarget) {
                         navLink.classList.add('bg-indigo-600', 'text-white');
                         navLink.classList.remove('text-gray-700', 'hover:bg-gray-200');
@@ -1037,16 +926,10 @@
                     }
                 });
             }
-            // ---
-            // --- END OF FIX FOR NAVIGATION MENU ---
-            // ---
 
-            // Add scroll listener to update active links
             window.addEventListener('scroll', updateActiveLink);
-            // Call once on load
             updateActiveLink();
 
-            // --- Mobile Menu Toggle ---
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             if (mobileMenuButton && mobileMenu) {
                 mobileMenuButton.addEventListener('click', function() {
@@ -1055,7 +938,6 @@
                 });
             }
 
-            // --- Close mobile menu on link click ---
             navLinks.forEach(link => {
                 link.addEventListener('click', function() {
                     if(mobileMenu && mobileMenu.classList.contains('block')) {
@@ -1064,10 +946,8 @@
                 });
             });
 
-            // --- Abstract Toggle Logic ---
             document.querySelectorAll('.toggle-abstract-btn').forEach(button => {
                 button.addEventListener('click', () => {
-                    // Find the abstract content related to THIS button
                     const abstractContent = button.closest('.bg-white').querySelector('.abstract-content');
                     const icon = button.querySelector('i');
                     
@@ -1080,10 +960,6 @@
                 });
             });
 
-
-            // --- Gemini API ---
-
-            // Helper function for exponential backoff
             async function fetchWithBackoff(url, options, maxRetries = 5, baseDelay = 1000) {
                 let attempt = 0;
                 while (attempt < maxRetries) {
@@ -1092,20 +968,15 @@
                         if (response.ok) {
                             return await response.json();
                         } else if (response.status === 429 || response.status >= 500) {
-                            // Throttling or server error, wait and retry
                             const delay = baseDelay * Math.pow(2, attempt) + Math.random() * 1000;
-                            // Do not log retry attempts to the console
                             await new Promise(resolve => setTimeout(resolve, delay));
                             attempt++;
                         } else {
-                            // Other client-side error, don't retry
                             throw new Error(`HTTP error! status: ${response.status}`);
                         }
                     } catch (error) {
-                         // Network error, retry
                          if (attempt >= maxRetries - 1) throw error;
                          const delay = baseDelay * Math.pow(2, attempt) + Math.random() * 1000;
-                         // Do not log retry attempts to the console
                          await new Promise(resolve => setTimeout(resolve, delay));
                          attempt++;
                     }
@@ -1113,10 +984,6 @@
                 throw new Error('Max retries reached');
             }
 
-            // ---
-            // --- FIX FOR "Key Contributions" 400 ERROR ---
-            // ---
-            // Function to call Gemini API for contributions
             async function callGeminiContributions(abstractText, targetElementId, button) {
                 const targetElement = document.getElementById(targetElementId);
                 if (!targetElement) return;
@@ -1127,22 +994,18 @@
                     return;
                 }
 
-                // Show loading state
                 targetElement.classList.remove('hidden');
                 targetElement.innerHTML = `<div class="flex items-center"><span class="spinner"></span><span>Generating key contributions...</span></div>`;
                 button.disabled = true;
 
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`;
 
-                // Refactored prompt: Combine system and user instructions into one
                 const systemPrompt = "You are an expert academic reviewer. Your job is to read an abstract and concisely list the top 3-4 'Key Contributions' or 'Main Findings' as bullet points. Be specific and scientific, but avoid overly technical jargon. Start directly with the bullet points.";
                 const userQuery = `List the Key Contributions of this abstract:\n\n"${abstractText}"`;
                 const combinedQuery = `${systemPrompt}\n\nUSER QUERY:\n${userQuery}`;
 
                 const payload = {
-                    // Send the combined prompt as a single user message
                     contents: [{ parts: [{ text: combinedQuery }] }],
-                    // DO NOT send systemInstruction here
                     generationConfig: {
                         temperature: 0.4,
                         topP: 0.95,
@@ -1161,13 +1024,12 @@
                     if (candidate && candidate.content?.parts?.[0]?.text) {
                         let text = candidate.content.parts[0].text;
                         
-                        // --- FIX 3: More robust bullet point formatting ---
                         const lines = text.split('\n');
                         let html = '<ul>';
                         for (const line of lines) {
                             let cleanLine = line.trim();
                             if (cleanLine.startsWith('•') || cleanLine.startsWith('*')) {
-                                cleanLine = cleanLine.substring(1).trim(); // Remove bullet
+                                cleanLine = cleanLine.substring(1).trim(); 
                             }
                             if (cleanLine.length > 0) {
                                 html += `<li>${cleanLine}</li>`;
@@ -1175,12 +1037,10 @@
                         }
                         html += '</ul>';
                         text = html;
-                        // --- End of Fix 3 ---
                         
                         targetElement.innerHTML = text;
-                        targetElement.classList.add('gemini-output'); // Add the nice styling
+                        targetElement.classList.add('gemini-output'); 
                     } else {
-                        // Handle cases where the API returns a safety block or empty content
                         let errorMessage = 'Invalid response from API.';
                         if (result.candidates && result.candidates[0].finishReason === 'SAFETY') {
                             errorMessage = 'Content generation blocked due to safety settings.';
@@ -1195,17 +1055,12 @@
                     button.disabled = false;
                 }
             }
-            // ---
-            // --- END OF FIX FOR "Key Contributions" ---
-            // ---
 
-            // Add event listeners to all Gemini contributions buttons
             document.querySelectorAll('.gemini-explain-btn').forEach(button => {
                 button.addEventListener('click', () => {
                     const abstract = button.dataset.abstract;
                     const targetId = button.dataset.target;
                     
-                    // Toggle visibility if already generated
                     const targetElement = document.getElementById(targetId);
                     if (targetElement && targetElement.innerHTML !== '' && !targetElement.querySelector('.spinner') && !targetElement.querySelector('.text-red-600')) {
                         targetElement.classList.toggle('hidden');
@@ -1215,7 +1070,6 @@
                 });
             });
 
-            // --- AI Chatbot Logic ---
             const chatWidget = document.getElementById('chat-widget');
             const chatToggleBtn = document.getElementById('chat-toggle-btn');
             const chatCloseBtn = document.getElementById('chat-close-btn');
@@ -1265,17 +1119,13 @@
                     msgDiv.innerHTML = `<span class="spinner"></span><span>...</span>`;
                     msgDiv.id = 'loading-bubble';
                 } else {
-                    // Sanitize text before inserting
                     msgDiv.textContent = text;
                 }
                 
                 chatMessages.appendChild(msgDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight; 
             }
 
-            // ---
-            // --- FIX FOR CHATBOT 400 ERROR ---
-            // ---
             async function callGeminiChat(userQuery) {
                 if (GEMINI_API_KEY === "YOUR_API_KEY_HERE") {
                     addMessageToChat("The AI assistant is not configured. (Missing API Key)", 'bot');
@@ -1283,7 +1133,7 @@
                     return;
                 }
 
-                addMessageToChat('', 'bot', true); // Show loading bubble
+                addMessageToChat('', 'bot', true); 
                 if(chatSendBtn) chatSendBtn.disabled = true;
 
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`;
@@ -1296,11 +1146,10 @@
                 ---
                 `;
 
-                // Add user query to history
                 chatHistory.push({ role: 'user', parts: [{ text: userQuery }] });
 
                 const payload = {
-                    contents: chatHistory, // Send the whole history
+                    contents: chatHistory, 
                     generationConfig: {
                         temperature: 0.5,
                         topP: 0.95,
@@ -1308,7 +1157,6 @@
                     }
                 };
 
-                // Conditionally add systemInstruction ONLY on the first user message
                 if (chatHistory.length === 1) {
                     payload.systemInstruction = {
                         parts: [{ text: systemPrompt }]
@@ -1326,16 +1174,13 @@
                     if (candidate && candidate.content?.parts?.[0]?.text) {
                         const botResponse = candidate.content.parts[0].text;
                         
-                        // Add bot response to history
                         chatHistory.push({ role: 'model', parts: [{ text: botResponse }] });
 
-                        // Remove loading bubble and add real response
                         const loadingBubble = document.getElementById('loading-bubble');
                         if (loadingBubble) loadingBubble.remove();
                         addMessageToChat(botResponse, 'bot');
 
                     } else {
-                        // Handle cases where the API returns a safety block or empty content
                         let errorMessage = 'Invalid response from API.';
                         if (result.candidates && result.candidates[0] && result.candidates[0].finishReason === 'SAFETY') {
                             errorMessage = 'Content generation blocked due to safety settings.';
@@ -1349,7 +1194,6 @@
                     if (loadingBubble) loadingBubble.remove();
                     addMessageToChat(`Sorry, I'm having trouble connecting right now. (Error: ${error.message})`, 'bot');
                     
-                    // Remove the failed user query from history so it can be retried
                     chatHistory.pop(); 
 
                 } finally {
@@ -1357,14 +1201,9 @@
                     if(chatInput) chatInput.focus();
                 }
             }
-            // ---
-            // --- END OF FIX FOR CHATBOT 400 ERROR ---
-            // ---
 
         });
     </script>
 
 </body>
 </html>
-
-
