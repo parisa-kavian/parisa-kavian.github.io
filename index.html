@@ -33,8 +33,8 @@
     <meta property="og:type" content="website">
     <!-- IMPORTANT: Replace this with the final GitHub URL after deployment -->
     <meta property="og:url" content="https://parisa-kavian.github.io/"> 
-    <!-- IMPORTANT: Replace this with a link to a real profile image (e.g., images/profile.jpg) -->
-    <meta property="og:image" content="https://placehold.co/600x600/E0E7FF/4F46E5?text=PK">
+    <!-- IMPORTANT: This now points to your profile image -->
+    <meta property="og:image" content="https://parisa-kavian.github.io/images/profile.jpg">
 
     <!-- Google Analytics - Replace G-XXXXXXXXXX with your ID -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -66,7 +66,6 @@
         }
         .content-section {
             animation: fadeIn 0.5s ease-in-out;
-            /* All sections are visible by default in scroll layout */
         }
         .skill-logo {
             filter: grayscale(100%) opacity(0.7);
@@ -80,12 +79,13 @@
             transition: max-height 0.3s ease-out;
             overflow: hidden;
         }
-        /* Styles for Gemini feature */
+        /* Styles for Gemini feature (Light Theme) */
         .gemini-output {
-            background-color: #f0fdfa; /* teal-50 */
-            border-left: 4px solid #14b8a6; /* teal-500 */
+            background-color: #eef2ff; /* indigo-50 */
+            border-left: 4px solid #4f46e5; /* indigo-600 */
             padding: 12px 16px;
             border-radius: 4px;
+            color: #3730a3; /* indigo-900 */
         }
         .gemini-output ul {
             list-style-type: disc;
@@ -101,13 +101,13 @@
             width: 16px;
             height: 16px;
             border: 2px solid rgba(0,0,0,.1);
-            border-left-color: #14b8a6; /* teal-500 */
+            border-left-color: #4f46e5; /* indigo-600 */
             border-radius: 50%;
             animation: spin 0.6s linear infinite;
             margin-right: 8px;
         }
 
-        /* --- Chatbot Styles --- */
+        /* --- Chatbot Styles (Light Theme) --- */
         #chat-toggle-btn {
             position: fixed;
             bottom: 2rem;
@@ -149,6 +149,7 @@
             opacity: 0;
             pointer-events: none;
             transition: all 0.3s ease-out;
+            border: 1px solid #e5e7eb; /* gray-200 */
         }
         #chat-widget.visible {
             transform: scale(1) translateY(0);
@@ -263,7 +264,7 @@
 <body class="antialiased">
 
     <!-- Header & Navigation -->
-    <header class="bg-white/90 backdrop-blur-sm sticky top-0 z-50 shadow-md">
+    <header class="bg-white/90 backdrop-blur-sm sticky top-0 z-50 shadow-md border-b border-gray-200">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             
             <div class="text-2xl font-bold text-indigo-600">Parisa Kavianpour</div>
@@ -273,6 +274,7 @@
                 <a href="#home" class="nav-link active py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="home">Home</a>
                 <a href="#publications" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="publications">Publications</a>
                 <a href="#experience" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="experience">Experience</a>
+                <a href="#teaching" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="teaching">Teaching</a>
                 <a href="#projects" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="projects">Projects</a>
                 <a href="#education" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="education">Education</a>
                 <a href="#skills" class="nav-link py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 transition-colors" data-target="skills">Skills</a>
@@ -291,6 +293,7 @@
             <a href="#home" class="nav-link-mobile active block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="home">Home</a>
             <a href="#publications" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="publications">Publications</a>
             <a href="#experience" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="experience">Experience</a>
+            <a href="#teaching" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="teaching">Teaching</a>
             <a href="#projects" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="projects">Projects</a>
             <a href="#education" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="education">Education</a>
             <a href="#skills" class="nav-link-mobile block py-3 px-6 text-gray-700 hover:bg-gray-100 transition-colors" data-target="skills">Skills</a>
@@ -298,67 +301,92 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto p-6 lg:p-12 flex flex-col lg:flex-row gap-12">
+    <!-- <main class="container mx-auto p-6 lg:p-12 flex flex-col lg:flex-row gap-12"> -->
+    <main>
         
-        <!-- Left Sidebar -->
-        <aside class="w-full lg:w-1/3 xl:w-1/4">
-            <div class="bg-white p-6 rounded-lg shadow-lg lg:sticky lg:top-24">
-                <!-- IMPORTANT: Replace this placeholder with a real image path -->
-                <img src="https://placehold.co/600x600/E0E7FF/4F46E5?text=PK" alt="Parisa Kavianpour" class="w-40 h-40 rounded-full mx-auto border-4 border-indigo-500" onerror="this.src='https://placehold.co/600x600/E0E7FF/4F46E5?text=PK'; this.onerror=null;">
-                <h1 class="text-3xl font-bold text-gray-900 text-center mt-4">Parisa Kavianpour</h1>
-                <p class="text-center text-indigo-600 mt-1">AI/ML Researcher</p>
+        <!-- === NEW Hero Section (Full-width, Dark) === -->
+        <!-- 
+            IMPORTANT: Replace 'images/background.jpg' with the path to your background image. 
+            This image should be in your 'images' folder.
+        -->
+        <section id="home" class="content-section bg-slate-900 py-20 md:py-32 relative" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center; background-blend-mode: overlay; background-color: rgba(15, 23, 42, 0.8);">
+            <!-- The 'home' ID is kept here for the navigation -->
+            
+            <div class="container mx-auto px-6 text-center flex flex-col items-center">
                 
-                <ul class="mt-6 space-y-3 text-gray-600">
-                    <li class="flex items-center">
-                        <i class="fas fa-map-marker-alt w-6 text-center text-lg text-indigo-500"></i>
-                        <span class="ml-3">Tehran, Iran</span>
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-envelope w-6 text-center text-lg text-indigo-500"></i>
-                        <a href="mailto:p.kavianpour08@umail.umz.ac.ir" class="ml-3 hover:text-indigo-500">p.kavianpour08@umail.umz.ac.ir</a>
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fab fa-linkedin w-6 text-center text-lg text-indigo-500"></i>
-                        <a href="https://www.linkedin.com/in/parisa-kavianpour-a8ab1a195/" target="_blank" class="ml-3 hover:text-indigo-500">LinkedIn Profile</a>
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fab fa-github w-6 text-center text-lg text-indigo-500"></i>
-                        <a href="https://github.com/parisa-kavian" target="_blank" class="ml-3 hover:text-indigo-500">GitHub Profile</a>
-                    </li>
-                    <li class="flex items-center">
-						<i class="fas fa-graduation-cap w-6 text-center text-lg text-indigo-500"></i>
-						<a href="https://scholar.google.com/citations?user=xR-FY-AAAAAJ&hl=en" target="_blank" class="ml-3 hover:text-indigo-500">Google Scholar</a>
-					</li>
-                </ul>
-            </div>
-        </aside>
+                <!-- 
+                    Profile Image: 
+                    - Changed to 'images/profile.jpg'
+                    - Changed from 'rounded-full w-40 h-40' to 'rounded-lg w-48'
+                -->
+                <img src="images/profile.jpg" alt="Parisa Kavianpour" class="w-48 h-auto rounded-lg mx-auto border-4 border-indigo-500 mb-4 shadow-lg" onerror="this.src='https://placehold.co/400x500/E0E7FF/4F46E5?text=PK'; this.onerror=null;">
+                
+                <!-- Name & Title -->
+                <h1 class="text-4xl md:text-5xl font-bold text-white mt-4">Parisa Kavianpour</h1>
+                <p class="text-center text-indigo-400 mt-2 text-xl">AI/ML Researcher</p>
 
-        <!-- Right Content Area -->
-        <div class="w-full lg:w-2/3 xl:w-3/4 space-y-16">
-            <!-- Home Section (About Me) -->
-            <section id="home" class="content-section">
-                <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">About Me</h2>
-                
-                <div class="text-lg space-y-4 text-gray-700 leading-relaxed mt-8">
+                <!-- Social Icons -->
+                <div class="flex justify-center space-x-6 mt-6">
+                    <a href="mailto:p.kavianpour08@umail.umz.ac.ir" title="Email" class="text-slate-300 hover:text-indigo-400 text-2xl transition-colors"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/parisa-kavianpour-a8ab1a195/" title="LinkedIn" target="_blank" class="text-slate-300 hover:text-indigo-400 text-2xl transition-colors"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/parisa-kavian" title="GitHub" target="_blank" class="text-slate-300 hover:text-indigo-400 text-2xl transition-colors"><i class="fab fa-github"></i></a>
+                    <a href="https://scholar.google.com/citations?user=xR-FY-AAAAAJ&hl=en" title="Google Scholar" target="_blank" class="text-slate-300 hover:text-indigo-400 text-2xl transition-colors"><i class="fas fa-graduation-cap"></i></a>
+                </div>
+            </div>
+
+            <!-- "About Me" text moved inside the dark Hero section -->
+            <div class="container mx-auto px-6 mt-16">
+                 <h2 class="text-3xl font-bold text-white border-b-4 border-indigo-500 pb-2 inline-block">About Me</h2>
+                 
+                 <!-- NEW "About Me" Text -->
+                 <div class="text-lg space-y-4 text-slate-300 leading-relaxed mt-8 max-w-3xl mx-auto">
                     <p>
-                        I am an AI and Machine Learning researcher passionate about leveraging advanced computational techniques to solve complex, real-world problems. My journey into AI began from an unconventional starting point: Civil and Earthquake Engineering.
+                        My name is Parisa Kavianpour, and I am an Applied AI researcher interested in how intelligent systems can learn from complex, imperfect real-world data. I first encountered this challenge during my M.Sc. in Earthquake Engineering, where I worked with high-dimensional, chaotic seismic time-series. That experience, building deep learning models to discover hidden structure in noisy data, quickly became the foundation of my interest in AI research.
                     </p>
                     <p>
-                        During my M.Sc., I was captivated by the challenge of predicting seismic events—a problem defined by massive, high-dimensional, and chaotic time-series data. This led to my thesis, "Earthquake Prediction Using Deep Learning," where I explored how models like CNNs and LSTMs could identify subtle patterns in seismic data that traditional methods might miss. This project was my gateway into the world of deep learning, resulting in multiple publications, including a highly-cited paper [Citations: 150+] in *The Journal of Supercomputing*.
+                        Since then, my work has evolved along two complementary directions:
+                        (1) developing practical AI solutions in industry, and
+                        (2) contributing to academic research on reliable machine learning.
                     </p>
                     <p>
-                        This academic pivot solidified my passion for AI. After graduating, I immediately began applying these skills in two parallel tracks: one in industry and one in academia.
+                        In industry, I have worked as a Senior AI Research Developer, designing systems that directly impact users and businesses. These include RAG-based conversational agents, hybrid recommender systems, sentiment analysis pipelines using LLMs, and AI-driven automation tools for real-time insights. These projects strengthened my experience in NLP, generative AI, and end-to-end model deployment.
                     </p>
                     <p>
-                        In my industrial roles as a Senior AI Research Developer, I've designed and deployed practical AI solutions, from building hybrid recommender systems to architecting generative AI pipelines using LLMs and RAG.
+                        Alongside industry work, I maintain a strong academic involvement as a Research Assistant at Tarbiat Modares University. My research focuses on graph neural networks, domain adaptation under data limitations, and simulation-supported learning techniques. This work has resulted in multiple journal publications, including two recent Q1 papers, and continues to shape my interest in building AI models that remain robust in challenging environments.
                     </p>
                     <p>
-                        Concurrently, I have maintained a strong, ongoing connection to academia as a **part-time Research Assistant at Tarbiat Modares University**. This role, which continues to the present, allows me to dive deeper into core research challenges. My work here focuses on industrial AI, specifically in `fault diagnosis`, `safety, and reliability`, using advanced techniques like `Domain Adaptation`, `Graph Neural Networks (GNNs)`, and `Physics-Informed Machine Learning`. This research has directly resulted in two Q1 journal publications (`Knowledge-Based Systems` and `Measurement`).
-                    </p>
-                    <p>
-                        This dual-track experience keeps me grounded in real-world applications while pushing my theoretical knowledge. I am now actively seeking Ph.D. opportunities to dedicate myself fully to research, applying my background in time-series analysis and generative models to new and challenging domains.
+                        Today, my main research motivation is understanding how AI can bridge the gap between controlled laboratory conditions and the messy, uncertain nature of real-world systems—whether in engineering, natural processes, or data-driven decision-making. I am always open to exploring new directions where AI can meaningfully contribute to scientific or industrial challenges.
                     </p>
                 </div>
+            </div>
+        </section>
+        <!-- === END Hero Section === -->
+
+
+        <!-- Right Content Area (now a single column) -->
+        <div class="container mx-auto p-6 lg:p-12 space-y-16">
+            
+            <!-- NEW: Stats Section (Light Theme) -->
+            <section id="stats" class="content-section">
+                 <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Academic Stats</h2>
+                 <div class="mt-8 bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex flex-col md:flex-row justify-around items-center text-center">
+                        <div class="p-4 w-full md:w-1/3">
+                            <p class="text-5xl font-bold text-indigo-600">6</p>
+                            <p class="text-sm uppercase text-gray-500 mt-2">Publications</p>
+                        </div>
+                        <div class="p-4 w-full md:w-1/3 border-t md:border-t-0 md:border-l md:border-r border-gray-200">
+                            <p class="text-5xl font-bold text-indigo-600">174+</p>
+                            <p class="text-sm uppercase text-gray-500 mt-2">Citations</p>
+                        </div>
+                        <div class="p-4 w-full md:w-1/3 border-t md:border-t-0 border-gray-200">
+                            <!-- h-index Updated to 4 -->
+                            <p class="text-5xl font-bold text-indigo-600">4</p>
+                            <p class="text-sm uppercase text-gray-500 mt-2">h-index</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-center text-gray-400 mt-4">As of November 2025, via Google Scholar.</p>
+                 </div>
             </section>
 
             <!-- Publications Section -->
@@ -554,6 +582,29 @@
                             <li>Led M.Sc. thesis research applying novel deep learning models to seismic time-series prediction, producing 3 papers.</li>
                             <li>Served as TA for M.Sc. level courses in Soft Computing and Optimization.</li>
                         </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- NEW: Teaching Section -->
+            <section id="teaching" class="content-section">
+                <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-indigo-500 pb-2 inline-block">Teaching</h2>
+                <div class="mt-8 space-y-6">
+                    <p class="text-lg text-gray-700">I am passionate about teaching and mentoring. During my M.Sc., I served as a Teaching Assistant for the following graduate-level courses at the University of Mazandaran.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Course 1 -->
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-bold text-gray-900">Soft Computing</h3>
+                            <p class="text-indigo-600 font-semibold mt-1">Teaching Assistant (M.Sc. Level)</p>
+                            <p class="mt-3 text-gray-600">Assisted graduate students with concepts in fuzzy logic, neural networks, and evolutionary computation. Graded assignments and led practical lab sessions.</p>
+                        </div>
+                        <!-- Course 2 -->
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-bold text-gray-900">Optimization</h3>
+                            <p class="text-indigo-600 font-semibold mt-1">Teaching Assistant (M.Sc. Level)</p>
+                            <p class="mt-3 text-gray-600">Guided students through classical and heuristic optimization algorithms (e.g., Genetic Algorithms, PSO). Helped debug and implement algorithms in MATLAB.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -756,7 +807,8 @@
 
     <div id="chat-widget" class="">
         <div id="chat-header">
-            <h3>AI Research Assistant</h3>
+            <!-- NEW Chatbot Title -->
+            <h3>دستیار پژوهشی</h3>
             <button id="chat-close-btn" title="Close chat">&times;</button>
         </div>
         <div id="chat-messages">
@@ -775,7 +827,7 @@
 
     <footer class="text-center py-8 text-sm text-gray-500 border-t border-gray-200 mt-12 bg-white">
         <p>&copy; 2025 Parisa Kavianpour. All rights reserved.</p>
-        <p>Built with Tailwind CSS</p>
+        <p>Built with Tailwind CSS & Gemini AI</p>
     </footer>
 
 
@@ -803,29 +855,35 @@
                 // ---
                 // --- FIX 1 (Revised): Add Contact Info from Sidebar ---
                 // ---
-                const sidebar = document.querySelector('aside');
-                if (sidebar) {
+                // Read from the new Hero section instead of the deleted <aside>
+                const hero = document.getElementById('home'); 
+                if (hero) {
                     context += "Parisa's Contact Information:\n";
-                    const email = sidebar.querySelector('a[href^="mailto:"]');
+                    const email = hero.querySelector('a[href^="mailto:"]');
                     if (email) context += "Email: " + email.href.replace('mailto:','') + "\n";
                     
-                    const linkedin = sidebar.querySelector('a[href*="linkedin.com"]');
+                    const linkedin = hero.querySelector('a[href*="linkedin.com"]');
                     if (linkedin) context += "LinkedIn: " + linkedin.href + "\n";
 
-                    const github = sidebar.querySelector('a[href*="github.com"]');
+                    const github = hero.querySelector('a[href*="github.com"]');
                     if (github) context += "GitHub: " + github.href + "\n";
 
-                    const scholar = sidebar.querySelector('a[href*="scholar.google.com"]');
+                    const scholar = hero.querySelector('a[href*="scholar.google.com"]');
                     if (scholar) context += "Google Scholar: " + scholar.href + "\n";
                     
                     context += "\n\n";
+
+                    // 1. About Me (Now read from Hero)
+                    const aboutDiv = hero.querySelector('.text-lg.space-y-4');
+                    if (aboutDiv) context += "About Parisa Kavianpour:\n" + aboutDiv.textContent.trim() + "\n\n";
                 }
 
-                // 1. About Me
-                const home = document.getElementById('home');
-                if (home) context += "About Parisa Kavianpour:\n" + home.textContent.trim() + "\n\n";
 
-                // 2. Publications
+                // 2. Stats
+                const stats = document.getElementById('stats');
+                if (stats) context += "Academic Stats:\n" + stats.textContent.trim() + "\n\n";
+
+                // 3. Publications
                 context += "Publications:\n";
                 document.querySelectorAll('#publications .bg-white.shadow').forEach(pub => {
                     const title = pub.querySelector('.font-bold.text-lg');
@@ -834,7 +892,7 @@
                     if (abstract) context += "Abstract: " + abstract.dataset.abstract.trim() + "\n\n";
                 });
 
-                // 3. Experience
+                // 4. Experience
                 context += "Experience:\n";
                  document.querySelectorAll('#experience .relative.pl-8').forEach(exp => {
                     const title = exp.querySelector('h3');
@@ -844,15 +902,16 @@
                     if (company) context += "At: " + company.textContent.trim() + "\n";
                     if (details) context += "Details: " + details.textContent.trim() + "\n\n";
 
-                    // ---
-                    // --- FIX 2: Explicitly add "missing data" experience ---
-                    // ---
                     if (title && title.textContent.includes('Tarbiat Modares University')) {
                         context += "Specific expertise from this role includes: handling missing or incomplete data, physics-informed machine learning, and domain adaptation.\n\n";
                     }
                  });
  
-                // 4. Projects
+                // 5. Teaching (NEW SECTION)
+                const teaching = document.getElementById('teaching');
+                if (teaching) context += "Teaching Experience:\n" + teaching.textContent.trim() + "\n\n";
+
+                // 6. Projects
                 context += "Projects:\n";
                  document.querySelectorAll('#projects .bg-white.shadow-lg').forEach(proj => {
                     const title = proj.querySelector('h3');
@@ -861,7 +920,7 @@
                     if (desc) context += "Description: " + desc.textContent.trim() + "\n\n";
                 });
 
-                // 5. Skills
+                // 7. Skills
                 context += "Skills:\n";
                 document.querySelectorAll('#skills .font-semibold, #skills .font-medium').forEach(skill => {
                     context += skill.textContent.trim() + ", ";
